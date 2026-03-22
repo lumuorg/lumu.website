@@ -1,586 +1,1005 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ID Genius systems</title>
-  <meta name="description" content="Professional student ID cards for schools, colleges and events in Tamil Nadu. Digital collection, auto-generated designs, doorstep delivery. Starting ₹18/card.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMU ID Cards — Smart ID Cards for Schools & Institutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0a0f0d;
+  --ink2: #2d3a36;
+  --muted: #6b7c76;
+  --surface: #f5faf8;
+  --card: #ffffff;
+  --green: #006a5e;
+  --green-light: #00c4a7;
+  --green-pale: #e0f5f1;
+  --green-mid: #c8ede8;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --wa: #25d366;
+  --border: rgba(0,106,94,.12);
+  --r: 16px;
+  --r-lg: 24px;
+  --shadow: 0 4px 32px rgba(0,106,94,.10);
+  --shadow-lg: 0 12px 60px rgba(0,106,94,.16);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Roboto',sans-serif;background:var(--surface);color:var(--ink);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
 
-  <!-- Match your existing site fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--green-pale)}
+::-webkit-scrollbar-thumb{background:var(--green);border-radius:3px}
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(245,250,248,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);height:64px;display:flex;align-items:center;padding:0 clamp(16px,4vw,60px)}
+.nav-inner{max-width:1200px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:36px;height:36px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;letter-spacing:-1px}
+.logo-text{font-family:'Nunito',sans-serif;font-weight:800;font-size:17px;color:var(--ink)}
+.logo-text span{color:var(--green)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+.nav-cta{display:flex;align-items:center;gap:10px}
+.btn-wa-nav{display:flex;align-items:center;gap:7px;background:var(--wa);color:#fff;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:600;transition:all .2s}
+.btn-wa-nav:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,211,102,.35)}
+@media(max-width:768px){.nav-links{display:none}}
 
-    :root {
-      --brand:   #006a5e;
-      --brand2:  #00897b;
-      --accent:  #f59e0b;
-      --bg:      #ffffff;
-      --surface: #f8fafc;
-      --text:    #0f172a;
-      --muted:   #64748b;
-      --border:  #e2e8f0;
-      --green:   #059669;
-    }
+/* ── HERO ── */
+.hero{min-height:100vh;padding:100px clamp(16px,4vw,60px) 60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1200px;margin:0 auto}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:90px}}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--green-pale);border:1px solid var(--green-mid);color:var(--green);font-size:12px;font-weight:600;padding:6px 14px;border-radius:999px;margin-bottom:20px;letter-spacing:.5px}
+.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--green-light);border-radius:50%;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.hero h1{font-family:'Nunito',sans-serif;font-size:clamp(36px,5.5vw,68px);font-weight:800;line-height:1.05;letter-spacing:-1px;color:var(--ink);margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--green);position:relative}
+.hero h1 em::after{content:'';position:absolute;left:0;bottom:-4px;width:100%;height:3px;background:var(--green-light);border-radius:2px}
+.hero-sub{font-size:17px;color:var(--muted);line-height:1.6;margin-bottom:32px;max-width:480px}
+.hero-sub strong{color:var(--ink);font-weight:600}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.btn-primary{display:flex;align-items:center;gap:8px;background:var(--green);color:#fff;padding:14px 28px;border-radius:999px;font-size:15px;font-weight:600;transition:all .25s;border:none;cursor:pointer}
+.btn-primary:hover{background:#005048;transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,106,94,.3)}
+.btn-secondary{display:flex;align-items:center;gap:8px;background:transparent;color:var(--ink);padding:14px 28px;border-radius:999px;font-size:15px;font-weight:600;border:1.5px solid rgba(0,0,0,.15);transition:all .25s;cursor:pointer}
+.btn-secondary:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px)}
+.btn-wa-hero{background:var(--wa);color:#fff;padding:14px 28px;border-radius:999px;font-size:15px;font-weight:600;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .25s}
+.btn-wa-hero:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.4)}
+.trust-bar{display:flex;gap:24px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.trust-item span{font-weight:700;color:var(--ink)}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+/* hero visual */
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-card-stack{position:relative;width:320px;height:420px}
+.id-card-mock{position:absolute;width:260px;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.id-card-mock.card-1{top:0;left:30px;transform:rotate(-6deg);z-index:1;animation:floatA 4s ease-in-out infinite}
+.id-card-mock.card-2{top:60px;left:0;transform:rotate(3deg);z-index:2;animation:floatB 4s ease-in-out infinite}
+@keyframes floatA{0%,100%{transform:rotate(-6deg) translateY(0)}50%{transform:rotate(-6deg) translateY(-10px)}}
+@keyframes floatB{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(3deg) translateY(-6px)}}
+.stat-bubble{position:absolute;background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 16px;box-shadow:var(--shadow);z-index:10}
+.stat-bubble.b1{top:-20px;right:-10px;animation:floatB 3s ease-in-out infinite}
+.stat-bubble.b2{bottom:40px;right:-20px;animation:floatA 3.5s ease-in-out infinite}
+.stat-bubble .num{font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;color:var(--green)}
+.stat-bubble .lbl{font-size:11px;color:var(--muted);font-weight:500}
 
-    /* ── NAV — matches lumu.co.in style ── */
-    nav {
-      padding: 0 24px;
-      height: 56px;
-      display: flex; align-items: center; justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-      position: sticky; top: 0; background: #fff; z-index: 100;
-    }
-    .nav-brand {
-      font-size: 20px; font-weight: 900; color: var(--text);
-      text-decoration: none; letter-spacing: -0.5px;
-    }
-    .nav-brand span { color: var(--brand); }
-    .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-right a {
-      font-size: 13px; font-weight: 500; color: var(--muted);
-      text-decoration: none; transition: color 0.2s;
-    }
-    .nav-right a:hover { color: var(--brand); }
-    .nav-back {
-      font-size: 13px; font-weight: 600; color: var(--brand) !important;
-      border: 1px solid var(--border); padding: 6px 14px; border-radius: 6px;
-    }
+/* id card design */
+.idc{width:260px;background:linear-gradient(135deg,#006a5e 0%,#004d44 100%);color:#fff;padding:0 0 20px}
+.idc-top{background:rgba(255,255,255,.1);padding:14px 16px;display:flex;align-items:center;gap:10px}
+.idc-logo{width:32px;height:32px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:8px;font-weight:800;color:var(--green);line-height:1.1;text-align:center}
+.idc-school{font-size:11px;font-weight:700;line-height:1.3}
+.idc-school small{font-size:9px;opacity:.7;font-weight:400;display:block}
+.idc-photo-row{display:flex;gap:12px;padding:16px;align-items:flex-end}
+.idc-photo{width:72px;height:90px;background:rgba(255,255,255,.2);border-radius:10px;overflow:hidden;flex-shrink:0;border:2px solid rgba(255,255,255,.3)}
+.idc-photo-inner{width:100%;height:100%;background:linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.05));display:flex;align-items:center;justify-content:center}
+.idc-fields{flex:1}
+.idc-name{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;margin-bottom:8px}
+.idc-row{font-size:9px;opacity:.8;margin-bottom:3px;display:flex;gap:6px}
+.idc-row b{opacity:1;font-weight:600;min-width:40px}
+.idc-footer{margin:0 16px;background:rgba(255,255,255,.15);border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center}
+.idc-footer .qr{width:32px;height:32px;background:rgba(255,255,255,.9);border-radius:4px}
+.idc-footer .barcode{height:22px;display:flex;gap:1.5px;align-items:center}
+.bar{background:rgba(255,255,255,.9);width:1.5px}
 
-    /* ── HERO ── */
-    .hero {
-      max-width: 720px; margin: 0 auto;
-      padding: 64px 24px 48px;
-      text-align: center;
-    }
-    .lumu-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: #f0fdf4; border: 1px solid #bbf7d0;
-      color: var(--green); font-size: 12px; font-weight: 700;
-      padding: 4px 14px; border-radius: 999px; margin-bottom: 20px;
-      letter-spacing: 0.5px;
-    }
-    .hero h1 {
-      font-size: clamp(28px, 5vw, 48px);
-      font-weight: 900; line-height: 1.1;
-      letter-spacing: -1px; margin-bottom: 16px;
-    }
-    .hero h1 span { color: var(--brand); }
-    .hero-sub {
-      font-size: 17px; color: var(--muted);
-      max-width: 520px; margin: 0 auto 12px;
-    }
-    .hero-tagline {
-      font-size: 13px; color: var(--muted); margin-bottom: 32px;
-      font-style: italic;
-    }
+/* ── SECTION COMMON ── */
+section{padding:56px clamp(16px,4vw,60px)}
+.container{max-width:1200px;margin:0 auto}
+.section-badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-pale);color:var(--green);font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:16px}
+.section-title{font-family:'Nunito',sans-serif;font-size:clamp(28px,4vw,46px);font-weight:800;letter-spacing:-.5px;line-height:1.1;margin-bottom:12px}
+.section-sub{font-size:16px;color:var(--muted);line-height:1.6;max-width:560px}
 
-    /* Price display — matches your ₹2,999 style */
-    .price-block {
-      display: inline-flex; align-items: baseline; gap: 10px;
-      margin-bottom: 28px;
-    }
-    .price-old { font-size: 18px; color: var(--muted); text-decoration: line-through; }
-    .price-new { font-size: 36px; font-weight: 900; color: var(--text); }
-    .price-unit { font-size: 14px; color: var(--muted); }
-    .price-save {
-      background: #fef3c7; color: #92400e;
-      font-size: 12px; font-weight: 700;
-      padding: 3px 10px; border-radius: 999px;
-    }
+/* ── TICKER ── */
+.ticker-wrap{background:var(--green);padding:12px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-flex;animation:ticker 22s linear infinite;gap:0}
+.ticker-item{font-size:13px;font-weight:600;color:#fff;padding:0 28px;display:flex;align-items:center;gap:10px}
+.ticker-dot{width:5px;height:5px;background:var(--green-light);border-radius:50%;flex-shrink:0}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-    /* CTA buttons — match your Buy Now style */
-    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
-    .btn-main {
-      background: var(--brand); color: #fff;
-      padding: 14px 32px; border-radius: 8px;
-      font-size: 16px; font-weight: 700;
-      text-decoration: none; transition: all 0.2s;
-      display: inline-block;
-    }
-    .btn-main:hover { background: #005048; transform: translateY(-1px); }
-    .btn-outline {
-      background: #fff; color: var(--text);
-      padding: 14px 28px; border-radius: 8px;
-      font-size: 15px; font-weight: 600;
-      text-decoration: none; border: 1.5px solid var(--border);
-      transition: all 0.2s; display: inline-block;
-    }
-    .btn-outline:hover { border-color: var(--brand); color: var(--brand); }
-    .cta-note { font-size: 12px; color: var(--muted); }
+/* ── PRODUCTS ── */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:28px}
+.product-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r-lg);overflow:hidden;transition:all .3s;cursor:pointer;position:relative}
+.product-card:hover{border-color:var(--green);transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.product-card.featured{border-color:var(--green);border-width:2px}
+.featured-badge{position:absolute;top:16px;right:16px;background:var(--green);color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.5px}
+.product-img{height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.product-img-pvc{background:linear-gradient(135deg,#e0f5f1,#c8ede8)}
+.product-img-qr{background:linear-gradient(135deg,#e0eeff,#c8d8ff)}
+.product-img-rfid{background:linear-gradient(135deg,#fef3e0,#fde8b0)}
+.product-img-holo{background:linear-gradient(135deg,#fce0f5,#f5c0e8)}
+.card-illustration{width:120px;height:80px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.15);position:relative;overflow:hidden;transition:transform .3s}
+.product-card:hover .card-illustration{transform:scale(1.06) rotate(-2deg)}
+.product-body{padding:20px}
+.product-name{font-family:'Nunito',sans-serif;font-size:18px;font-weight:800;margin-bottom:4px}
+.product-tagline{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.product-price{display:flex;align-items:baseline;gap:4px;margin-bottom:16px}
+.price-from{font-size:11px;color:var(--muted);font-weight:500}
+.price-val{font-family:'Nunito',sans-serif;font-size:26px;font-weight:800;color:var(--green)}
+.price-unit{font-size:12px;color:var(--muted)}
+.product-specs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.spec-chip{font-size:10px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--green-pale);color:var(--green)}
+.btn-configure{width:100%;padding:12px;border-radius:10px;border:none;background:var(--green);color:#fff;font-family:'Roboto',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-configure:hover{background:#005048}
 
-    /* Stats strip — matches your "35 Topic PDFs · 175+ Slides" style */
-    .stats-strip {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      margin: 0 0 64px;
-    }
-    .stat-item {
-      padding: 20px 32px; text-align: center;
-      border-right: 1px solid var(--border);
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-num { font-size: 22px; font-weight: 900; color: var(--brand); display: block; }
-    .stat-lbl { font-size: 12px; color: var(--muted); font-weight: 500; }
+/* card illustrations */
+.ci-pvc{background:linear-gradient(135deg,#006a5e,#004d44);display:flex;flex-direction:column;justify-content:space-between;padding:10px}
+.ci-qr{background:linear-gradient(135deg,#1e40af,#1e3a8a);display:flex;align-items:center;justify-content:center}
+.ci-rfid{background:linear-gradient(135deg,#92400e,#78350f);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.ci-holo{background:linear-gradient(135deg,#7c3aed,#5b21b6);position:relative;overflow:hidden}
+.ci-pvc-stripe{height:20px;background:rgba(255,255,255,.15);border-radius:3px;margin-bottom:4px}
+.ci-pvc-stripe.short{width:60%}
+.ci-pvc-avatar{width:28px;height:28px;background:rgba(255,255,255,.2);border-radius:6px}
+.ci-qr-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:6px;background:#fff;border-radius:6px}
+.qc{width:8px;height:8px;border-radius:1px}
+.ci-rfid-chip{width:40px;height:28px;background:rgba(255,255,255,.2);border-radius:5px;border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center}
+.ci-rfid-wave{display:flex;gap:3px;align-items:center}
+.wave-arc{width:5px;height:5px;border-radius:50%;background:transparent;border:1.5px solid rgba(255,255,255,.6)}
+.ci-holo-shimmer{position:absolute;inset:0;background:linear-gradient(45deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.3) 50%,rgba(255,255,255,0) 100%);animation:shimmer 2s linear infinite;transform:translateX(-100%)}
+@keyframes shimmer{to{transform:translateX(200%)}}
+.ci-holo-lines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 4px,rgba(255,255,255,.05) 4px,rgba(255,255,255,.05) 5px)}
 
-    /* Sections */
-    .section { max-width: 900px; margin: 0 auto; padding: 0 24px 72px; }
-    .section-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
-      color: var(--brand); text-transform: uppercase; margin-bottom: 8px;
-    }
-    .section-h {
-      font-size: clamp(22px, 4vw, 32px); font-weight: 900;
-      letter-spacing: -0.5px; margin-bottom: 32px; line-height: 1.2;
-    }
-    .section-h span { color: var(--brand); }
+/* ── ESTIMATOR ── */
+#estimator{background:var(--ink);color:#fff}
+.est-layout{display:grid;grid-template-columns:1fr 380px;gap:36px;align-items:start;margin-top:28px}
+@media(max-width:900px){.est-layout{grid-template-columns:1fr}}
+.est-steps{display:flex;flex-direction:column;gap:28px}
+.est-step{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:20px 24px;transition:border-color .2s}
+.est-step.active{border-color:var(--green-light)}
+.est-step-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green-light);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.est-step-num{width:20px;height:20px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800}
+.est-options{display:flex;gap:10px;flex-wrap:wrap}
+.est-opt{padding:9px 18px;border-radius:999px;border:1.5px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.8);font-family:'Roboto',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s}
+.est-opt:hover{border-color:var(--green-light);color:#fff}
+.est-opt.sel{background:var(--green);border-color:var(--green);color:#fff;font-weight:600}
+.est-slider-row{display:flex;align-items:center;gap:16px}
+.est-slider{flex:1;-webkit-appearance:none;height:4px;border-radius:2px;background:rgba(255,255,255,.15);outline:none;cursor:pointer}
+.est-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--green-light);cursor:pointer;box-shadow:0 2px 8px rgba(0,196,167,.4)}
+.est-qty-display{font-family:'Nunito',sans-serif;font-size:24px;font-weight:800;min-width:60px;text-align:right}
+.est-tier-bar{display:flex;gap:4px;margin-top:12px}
+.tier-seg{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.1);position:relative;overflow:hidden;transition:background .3s}
+.tier-seg.active{background:var(--green-light)}
+.tier-label{font-size:9px;color:rgba(255,255,255,.4);margin-top:4px;text-align:center}
 
-    /* What you get — matches your ✔ list style */
-    .get-box {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 28px; margin-bottom: 32px;
-    }
-    .get-box h3 {
-      font-size: 14px; font-weight: 700; color: var(--muted);
-      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
-    }
-    .get-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .get-list li { font-size: 14px; font-weight: 500; }
-    .get-list li::before { content: "✔ "; color: var(--green); font-weight: 700; }
-    @media (max-width: 560px) { .get-list { grid-template-columns: 1fr; } }
+/* quote panel */
+.quote-panel{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-lg);padding:28px;position:sticky;top:90px}
+.quote-live{display:flex;align-items:center;gap:8px;margin-bottom:20px;font-size:12px;color:rgba(255,255,255,.6)}
+.live-dot{width:8px;height:8px;background:var(--green-light);border-radius:50%;animation:pulse 1.5s infinite}
+.quote-card-name{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;margin-bottom:4px}
+.quote-card-sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px}
+.quote-breakdown{border-top:1px solid rgba(255,255,255,.08);padding-top:18px;margin-bottom:18px}
+.qb-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;color:rgba(255,255,255,.7)}
+.qb-row.highlight{color:#fff;font-weight:600;font-size:15px;border-top:1px solid rgba(255,255,255,.1);margin-top:8px;padding-top:12px}
+.qb-row.savings{color:var(--green-light);font-size:12px}
+.quote-total{background:var(--green);border-radius:12px;padding:16px 20px;margin-bottom:18px}
+.qt-label{font-size:11px;color:rgba(255,255,255,.7);font-weight:500;margin-bottom:4px}
+.qt-amount{font-family:'Nunito',sans-serif;font-size:36px;font-weight:800;line-height:1}
+.qt-unit{font-size:13px;color:rgba(255,255,255,.7)}
+.btn-order-wa{width:100%;padding:14px;background:var(--wa);color:#fff;border:none;border-radius:12px;font-family:'Roboto',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-order-wa:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.4)}
 
-    /* How it works — 1,2,3,4 style */
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 48px; }
-    .step-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 24px 20px; text-align: center;
-    }
-    .step-n {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--brand); color: #fff;
-      font-size: 16px; font-weight: 900;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 12px;
-    }
-    .step-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
-    .step-desc { font-size: 13px; color: var(--muted); }
+/* ── DEMO SECTION ── */
+#demo{background:#fff}
+.demo-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:28px}
+@media(max-width:900px){.demo-layout{grid-template-columns:1fr}}
+.demo-phone{position:relative;display:flex;justify-content:center}
+.phone-frame{width:260px;background:#0a0f0d;border-radius:36px;padding:12px;box-shadow:0 24px 80px rgba(0,0,0,.3),inset 0 0 0 1px rgba(255,255,255,.1)}
+.phone-screen{background:var(--surface);border-radius:26px;overflow:hidden;height:480px;position:relative}
+.phone-notch{width:80px;height:20px;background:#0a0f0d;border-radius:0 0 12px 12px;margin:0 auto;position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:10}
+.phone-content{padding:30px 16px 16px;height:100%;overflow:hidden}
+.phone-portal-header{background:linear-gradient(135deg,#667eea,#f093fb);border-radius:14px;padding:16px;margin-bottom:12px;text-align:center}
+.phone-portal-header h3{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:#fff;margin-bottom:2px}
+.phone-portal-header p{font-size:10px;color:rgba(255,255,255,.8)}
+.phone-form-field{background:#fff;border-radius:8px;padding:8px 12px;margin-bottom:8px;border:1px solid var(--border)}
+.phone-form-field label{font-size:9px;color:var(--muted);font-weight:600;display:block;margin-bottom:2px;letter-spacing:.5px}
+.phone-form-field .fval{font-size:11px;color:var(--ink);font-weight:500}
+.phone-preview-card{background:linear-gradient(135deg,#006a5e,#004d44);border-radius:10px;padding:10px;display:flex;gap:8px;align-items:center;margin-top:10px}
+.phone-preview-photo{width:36px;height:44px;background:rgba(255,255,255,.2);border-radius:5px}
+.phone-preview-info{color:#fff}
+.phone-preview-info .pname{font-size:10px;font-weight:700;font-family:'Nunito',sans-serif}
+.phone-preview-info .pid{font-size:8px;opacity:.7}
+.demo-pulse{position:absolute;top:-8px;right:-8px;background:var(--green);color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:999px;animation:pulse 1.5s infinite}
 
-    /* Pricing table — matches your comparison table */
-    .pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 48px; }
-    .plan {
-      border: 1.5px solid var(--border); border-radius: 12px;
-      padding: 24px; text-align: center;
-      transition: all 0.2s;
-    }
-    .plan:hover { border-color: var(--brand); }
-    .plan.featured {
-      border-color: var(--brand);
-      box-shadow: 0 0 0 1px var(--brand);
-    }
-    .plan-badge {
-      display: inline-block; background: var(--brand); color: #fff;
-      font-size: 10px; font-weight: 700; padding: 2px 10px;
-      border-radius: 999px; margin-bottom: 10px; letter-spacing: 0.5px;
-    }
-    .plan-name { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
-    .plan-price { font-size: 30px; font-weight: 900; color: var(--brand); line-height: 1; }
-    .plan-unit { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
-    .plan-features { list-style: none; text-align: left; margin-bottom: 20px; }
-    .plan-features li { font-size: 13px; color: var(--muted); padding: 4px 0; }
-    .plan-features li::before { content: "✔ "; color: var(--green); font-weight: 700; }
-    .plan-btn {
-      display: block; background: var(--brand); color: #fff;
-      padding: 10px; border-radius: 8px;
-      font-size: 14px; font-weight: 700; text-decoration: none;
-      transition: background 0.2s;
-    }
-    .plan-btn:hover { background: #005048; }
-    .plan-btn.outline {
-      background: #fff; color: var(--brand);
-      border: 1.5px solid var(--border);
-    }
-    .plan-btn.outline:hover { border-color: var(--brand); }
+.demo-content h2{font-family:'Nunito',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
+.demo-content h2 em{font-style:normal;color:var(--green)}
+.demo-content p{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:24px}
+.demo-features{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.demo-feat{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--ink2)}
+.demo-feat-icon{width:32px;height:32px;background:var(--green-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
+.btn-demo{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;padding:15px 32px;border-radius:999px;font-size:15px;font-weight:600;transition:all .25s;border:none;cursor:pointer}
+.btn-demo:hover{background:#005048;transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,106,94,.3)}
+.btn-demo-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--green);padding:15px 28px;border-radius:999px;font-size:14px;font-weight:600;border:1.5px solid var(--green);margin-left:10px;transition:all .25s;cursor:pointer}
+.btn-demo-outline:hover{background:var(--green-pale)}
 
-    /* Comparison table — matches your LUMU vs coaching table */
-    .comp-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 48px; }
-    .comp-table th { background: var(--surface); padding: 12px 16px; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); }
-    .comp-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); }
-    .comp-table tr:last-child td { border-bottom: none; }
-    .comp-table td:first-child { font-weight: 500; }
-    .comp-table td:nth-child(2) { color: var(--muted); text-align: center; }
-    .comp-table td:nth-child(3) { font-weight: 600; color: var(--brand); text-align: center; }
-    .yes { color: var(--green) !important; }
-    .no  { color: #dc2626 !important; }
+/* ── HOW IT WORKS ── */
+#how{background:var(--green-pale)}
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px;position:relative}
+@media(max-width:768px){.how-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.how-steps{grid-template-columns:1fr}}
+.how-connector{position:absolute;top:36px;left:12%;right:12%;height:2px;background:repeating-linear-gradient(90deg,var(--green) 0px,var(--green) 6px,transparent 6px,transparent 12px)}
+@media(max-width:768px){.how-connector{display:none}}
+.how-step{background:var(--card);border-radius:var(--r-lg);padding:24px;position:relative;border:1.5px solid transparent;transition:all .3s}
+.how-step:hover{border-color:var(--green);transform:translateY(-4px);box-shadow:var(--shadow)}
+.how-num{width:48px;height:48px;background:var(--green);color:#fff;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;margin-bottom:16px;z-index:1;position:relative}
+.how-title{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;margin-bottom:8px}
+.how-desc{font-size:13px;color:var(--muted);line-height:1.6}
 
-    /* Testimonials — matches your ★★★★★ style */
-    .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 48px; }
-    .testi {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 24px;
-    }
-    .stars { color: #f59e0b; font-size: 14px; margin-bottom: 10px; }
-    .testi-text { font-size: 14px; color: var(--text); line-height: 1.6; margin-bottom: 14px; font-style: italic; }
-    .testi-name { font-size: 13px; font-weight: 700; }
-    .testi-role { font-size: 12px; color: var(--muted); }
+/* ── TRUST ── */
+.trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px}
+.trust-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);padding:24px;text-align:center;transition:all .3s}
+.trust-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--green)}
+.trust-num{font-family:'Nunito',sans-serif;font-size:40px;font-weight:800;color:var(--green);line-height:1}
+.trust-lbl{font-size:13px;color:var(--muted);margin-top:6px;font-weight:500}
+.testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:40px}
+.testi{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);padding:24px;transition:all .3s}
+.testi:hover{box-shadow:var(--shadow);border-color:var(--green)}
+.testi-text{font-size:14px;color:var(--ink2);line-height:1.7;margin-bottom:16px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#fff;flex-shrink:0}
+.testi-name{font-size:13px;font-weight:700;color:var(--ink)}
+.testi-role{font-size:11px;color:var(--muted)}
+.stars{color:var(--amber);font-size:14px;margin-bottom:10px;letter-spacing:2px}
 
-    /* FAQ */
-    .faq-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px; }
-    .faq {
-      border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
-    }
-    .faq summary {
-      padding: 16px 20px; font-size: 14px; font-weight: 600;
-      cursor: pointer; list-style: none;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .faq summary::after { content: "+"; font-size: 18px; color: var(--brand); }
-    .faq[open] summary::after { content: "−"; }
-    .faq-body { padding: 0 20px 16px; font-size: 14px; color: var(--muted); line-height: 1.6; }
+/* ── ENQUIRY ── */
+#contact{background:var(--ink);color:#fff}
+.enquiry-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-top:28px}
+@media(max-width:768px){.enquiry-layout{grid-template-columns:1fr}}
+.enquiry-info h2{font-family:'Nunito',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:800;letter-spacing:-1.5px;margin-bottom:16px}
+.enquiry-info p{font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:28px}
+.contact-options{display:flex;flex-direction:column;gap:12px}
+.contact-opt{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 18px;transition:all .2s}
+.contact-opt:hover{border-color:var(--green-light);background:rgba(0,196,167,.08)}
+.contact-opt-icon{font-size:20px}
+.contact-opt-label{font-size:11px;color:rgba(255,255,255,.5);font-weight:500}
+.contact-opt-val{font-size:14px;font-weight:600;color:#fff}
+.enquiry-form{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-lg);padding:28px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:11px;font-weight:600;color:rgba(255,255,255,.6);letter-spacing:.5px;text-transform:uppercase}
+.form-group input,.form-group select{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;color:#fff;font-family:'Roboto',sans-serif;font-size:14px;outline:none;transition:border-color .2s;width:100%}
+.form-group input:focus,.form-group select:focus{border-color:var(--green-light)}
+.form-group input::placeholder{color:rgba(255,255,255,.3)}
+.form-group select{appearance:none;cursor:pointer}
+.form-group select option{background:#1a2a25;color:#fff}
+.btn-submit{width:100%;padding:15px;background:var(--wa);color:#fff;border:none;border-radius:12px;font-family:'Roboto',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.4)}
 
-    /* Final CTA — matches your "Ready to Get Certified" section */
-    .final-cta {
-      background: var(--surface); border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 64px 24px; text-align: center; margin-bottom: 0;
-    }
-    .final-cta h2 { font-size: clamp(22px, 4vw, 32px); font-weight: 900; letter-spacing: -0.5px; margin-bottom: 8px; }
-    .final-price { display: flex; align-items: baseline; gap: 10px; justify-content: center; margin: 20px 0 28px; }
-    .final-old { font-size: 20px; color: var(--muted); text-decoration: line-through; }
-    .final-new { font-size: 42px; font-weight: 900; }
-    .final-save { background: #fef3c7; color: #92400e; font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
-    .final-note { font-size: 13px; color: var(--muted); margin-top: 14px; }
+/* ── FOOTER ── */
+footer{background:#060d0a;color:rgba(255,255,255,.6);padding:48px clamp(16px,4vw,60px)}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+@media(max-width:600px){.footer-inner{grid-template-columns:1fr}}
+.footer-brand{font-size:13px;line-height:1.8}
+.footer-logo{font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:10px}
+.footer-logo span{color:var(--green-light)}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:8px}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.5);transition:color .2s}
+.footer-links a:hover{color:var(--green-light)}
+.footer-links h4{font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#fff;margin-bottom:14px}
+.footer-bottom{max-width:1200px;margin:32px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:8px}
 
-    /* Footer — matches your footer style */
-    footer {
-      padding: 32px 24px; text-align: center;
-      border-top: 1px solid var(--border);
-    }
-    .footer-brand { font-size: 18px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 6px; }
-    .footer-tagline { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
-    .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
-    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; }
-    .footer-links a:hover { color: var(--brand); }
-    .footer-copy { font-size: 12px; color: var(--muted); }
+/* ── WA FLOAT ── */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:200;background:var(--wa);color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,.4);transition:all .2s;cursor:pointer;font-size:24px}
+.wa-float:hover{transform:scale(1.1)}
+.wa-badge{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;font-size:9px;font-weight:800;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--surface)}
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      .stat-item { padding: 16px 20px; }
-      nav { padding: 0 16px; }
-      .hero { padding: 48px 16px 40px; }
-    }
-  </style>
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── RESPONSIVE POLISH ── */
+@media(max-width:480px){
+  .hero-ctas{flex-direction:column}
+  .btn-primary,.btn-wa-hero,.btn-secondary{width:100%;justify-content:center}
+  .est-options{gap:6px}
+  .est-opt{padding:7px 14px;font-size:12px}
+}
+</style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="https://lumu.co.in" class="nav-brand">LUMU<span>.</span></a>
-  <div class="nav-right">
-    <a href="https://lumu.co.in">← Back to LUMU</a>
-    <a href="#pricing" class="nav-back">Get Started</a>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="logo-mark">LU<br>MU</div>
+      <div class="logo-text">ID<span>Genius</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#estimator">Pricing</a></li>
+      <li><a href="#demo">Live Demo</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20enquire%20about%20ID%20cards" target="_blank" class="btn-wa-nav">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
   </div>
 </nav>
 
+<!-- TICKER -->
+<div class="ticker-wrap" style="margin-top:64px">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item"><span class="ticker-dot"></span>500+ schools served across Tamil Nadu</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>2 lakh+ ID cards printed</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>24-hour express printing available</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>GST invoice included with every order</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pan India delivery · Free above ₹2000</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Basic PVC cards from ₹25 per card</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>RFID smart cards · Bulk discounts upto 40%</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>500+ schools served across Tamil Nadu</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>2 lakh+ ID cards printed</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>24-hour express printing available</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>GST invoice included with every order</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pan India delivery · Free above ₹2000</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Basic PVC cards from ₹25 per card</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>RFID smart cards · Bulk discounts upto 40%</span>
+  </div>
+</div>
+
 <!-- HERO -->
-<div class="hero">
-  <div class="lumu-tag">🪪 LUMU · ID Card System</div>
-  <h1>Smart ID Cards for<br><span>Schools & Colleges</span></h1>
-  <p class="hero-sub">Digital data collection. Auto-generated professional designs. Doorstep delivery across Tamil Nadu.</p>
-  <p class="hero-tagline">Learn · Upgrade · Make · Use — now for your institution too.</p>
-
-  <div class="price-block">
-    <span class="price-old">₹60/card</span>
-    <span class="price-new">₹18</span>
-    <span class="price-unit">per card onwards</span>
-    <span class="price-save">Save 70%</span>
+<section style="padding:20px clamp(16px,4vw,60px) 40px">
+  <div class="hero" style="padding:0;margin-top:0">
+    <div class="hero-left reveal">
+      <div class="hero-eyebrow">Live portal ready — try it now</div>
+      <h1>Smart <em>ID Cards</em><br>for every school</h1>
+      <p class="hero-sub">From ₹25/card · Custom designs · <strong>Web-based data collection</strong> · Printed & delivered in 24 hours</p>
+      <div class="hero-ctas">
+        <button class="btn-wa-hero" onclick="window.open('https://wa.me/919999999999?text=Hi%2C%20I%20want%20ID%20cards%20for%20my%20school','_blank')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Us
+        </button>
+        <button class="btn-primary" onclick="document.getElementById('estimator').scrollIntoView({behavior:'smooth'})">
+          Get instant price →
+        </button>
+        <a href="https://idcard.lumu.co.in/demo" target="_blank" class="btn-secondary">
+          Try live demo
+        </a>
+      </div>
+      <div class="trust-bar">
+        <div class="trust-item">✓ <span>500+</span> schools</div>
+        <div class="trust-item">✓ <span>2L+</span> cards printed</div>
+        <div class="trust-item">✓ <span>24h</span> turnaround</div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="hero-card-stack">
+        <div class="id-card-mock card-1">
+          <div class="idc">
+            <div class="idc-top">
+              <div class="idc-logo">DEMO<br>SCH</div>
+              <div class="idc-school">Demo High School<small>Affiliated to CBSE · Tamil Nadu</small></div>
+            </div>
+            <div class="idc-photo-row">
+              <div class="idc-photo"><div class="idc-photo-inner">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="13" r="7" fill="rgba(255,255,255,.3)"/><path d="M4 33c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="rgba(255,255,255,.3)" stroke-width="2" fill="none"/></svg>
+              </div></div>
+              <div class="idc-fields">
+                <div class="idc-name">STUDENT NAME</div>
+                <div class="idc-row"><b>Class</b> XI — Science</div>
+                <div class="idc-row"><b>ID</b> SCH-2026-001</div>
+                <div class="idc-row"><b>DOB</b> 12/03/2010</div>
+                <div class="idc-row"><b>Blood</b> O+</div>
+              </div>
+            </div>
+            <div class="idc-footer">
+              <div>
+                <div style="font-size:7px;opacity:.6;margin-bottom:3px">VALID TILL DEC 2026</div>
+                <div class="barcode">
+                  <div class="bar" style="height:14px"></div><div class="bar" style="height:18px"></div><div class="bar" style="height:12px"></div><div class="bar" style="height:20px"></div><div class="bar" style="height:16px"></div><div class="bar" style="height:22px"></div><div class="bar" style="height:14px"></div><div class="bar" style="height:18px"></div><div class="bar" style="height:20px"></div><div class="bar" style="height:12px"></div>
+                </div>
+              </div>
+              <div class="qr" style="background:rgba(255,255,255,.85);padding:3px;border-radius:4px">
+                <svg width="26" height="26" viewBox="0 0 26 26"><rect x="1" y="1" width="10" height="10" rx="1" fill="#006a5e"/><rect x="3" y="3" width="6" height="6" fill="white"/><rect x="4" y="4" width="4" height="4" fill="#006a5e"/><rect x="15" y="1" width="10" height="10" rx="1" fill="#006a5e"/><rect x="17" y="3" width="6" height="6" fill="white"/><rect x="18" y="4" width="4" height="4" fill="#006a5e"/><rect x="1" y="15" width="10" height="10" rx="1" fill="#006a5e"/><rect x="3" y="17" width="6" height="6" fill="white"/><rect x="4" y="18" width="4" height="4" fill="#006a5e"/><rect x="15" y="15" width="3" height="3" fill="#006a5e"/><rect x="19" y="15" width="3" height="3" fill="#006a5e"/><rect x="23" y="15" width="3" height="3" fill="#006a5e"/><rect x="15" y="19" width="3" height="3" fill="#006a5e"/><rect x="19" y="23" width="3" height="3" fill="#006a5e"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="stat-bubble b1">
+          <div class="num">₹25</div>
+          <div class="lbl">per card</div>
+        </div>
+        <div class="stat-bubble b2">
+          <div class="num">24h</div>
+          <div class="lbl">delivery</div>
+        </div>
+        <div style="position:absolute;bottom:-40px;left:0;right:0;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;color:var(--green);box-shadow:var(--shadow)">📱 Mobile-first portal</div>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;color:var(--green);box-shadow:var(--shadow)">✅ Admin dashboard</div>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div class="cta-row">
-    <a href="#pricing" class="btn-main">Get Started — Book Now</a>
-    <a href="#how" class="btn-outline">See How It Works ↓</a>
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-badge">Our Products</div>
+      <h2 class="section-title">4 cards that sell</h2>
+      <p class="section-sub">Practical options schools actually order — no confusion, no clutter. Click any card to configure your price instantly.</p>
+    </div>
+    <div class="products-grid reveal">
+
+      <div class="product-card featured" onclick="selectCardType('Basic PVC',25)">
+        <div class="featured-badge">Most Popular</div>
+        <div class="product-img product-img-pvc">
+          <div class="card-illustration ci-pvc">
+            <div style="display:flex;gap:4px;align-items:center;margin-bottom:6px">
+              <div class="ci-pvc-avatar"></div>
+              <div style="flex:1"><div class="ci-pvc-stripe" style="margin-bottom:3px;height:6px"></div><div class="ci-pvc-stripe short" style="height:4px;margin-bottom:0"></div></div>
+            </div>
+            <div class="ci-pvc-stripe"></div>
+            <div class="ci-pvc-stripe short"></div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Basic PVC</div>
+          <div class="product-tagline">CR80 standard size · Full colour both sides · Durable 0.76mm thickness</div>
+          <div class="product-price"><span class="price-from">from</span><span class="price-val">₹25</span><span class="price-unit">/card</span></div>
+          <div class="product-specs"><span class="spec-chip">Schools</span><span class="spec-chip">Colleges</span><span class="spec-chip">Offices</span><span class="spec-chip">CR80 size</span></div>
+          <button class="btn-configure">Configure & get price →</button>
+        </div>
+      </div>
+
+      <div class="product-card" onclick="selectCardType('QR Code',32)">
+        <div class="product-img product-img-qr">
+          <div class="card-illustration ci-qr">
+            <div class="ci-qr-grid" id="qrGrid"></div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">QR Code Card</div>
+          <div class="product-tagline">Unique QR per student · Scan to verify identity · Digital India ready</div>
+          <div class="product-price"><span class="price-from">from</span><span class="price-val">₹32</span><span class="price-unit">/card</span></div>
+          <div class="product-specs"><span class="spec-chip">Digital India</span><span class="spec-chip">Scan to verify</span><span class="spec-chip">Any QR reader</span></div>
+          <button class="btn-configure">Configure & get price →</button>
+        </div>
+      </div>
+
+      <div class="product-card" onclick="selectCardType('RFID Smart',85)">
+        <div class="product-img product-img-rfid">
+          <div class="card-illustration ci-rfid">
+            <div class="ci-rfid-chip">
+              <svg width="20" height="14" viewBox="0 0 20 14"><rect x="0" y="3" width="20" height="8" rx="2" fill="rgba(255,213,79,.6)"/><rect x="4" y="0" width="3" height="14" rx="1" fill="rgba(255,213,79,.4)"/><rect x="9" y="0" width="2" height="14" rx="1" fill="rgba(255,213,79,.4)"/><rect x="13" y="0" width="3" height="14" rx="1" fill="rgba(255,213,79,.4)"/></svg>
+            </div>
+            <div class="ci-rfid-wave">
+              <div class="wave-arc" style="width:8px;height:8px"></div>
+              <div class="wave-arc" style="width:14px;height:14px"></div>
+              <div class="wave-arc" style="width:20px;height:20px"></div>
+            </div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">RFID Smart Card</div>
+          <div class="product-tagline">Tap for attendance · Door access control · 13.56 MHz / 125 kHz chip</div>
+          <div class="product-price"><span class="price-from">from</span><span class="price-val">₹85</span><span class="price-unit">/card</span></div>
+          <div class="product-specs"><span class="spec-chip">Attendance</span><span class="spec-chip">Door access</span><span class="spec-chip">Smart chip</span></div>
+          <button class="btn-configure">Configure & get price →</button>
+        </div>
+      </div>
+
+      <div class="product-card" onclick="selectCardType('Hologram',65)">
+        <div class="product-img product-img-holo">
+          <div class="card-illustration ci-holo">
+            <div class="ci-holo-lines"></div>
+            <div class="ci-holo-shimmer"></div>
+            <div style="position:relative;z-index:1;padding:10px;color:#fff">
+              <div style="font-size:8px;font-weight:700;opacity:.9;margin-bottom:4px">HOLOGRAM</div>
+              <div style="width:40px;height:28px;border:1px solid rgba(255,255,255,.4);border-radius:4px;display:flex;align-items:center;justify-content:center">
+                <svg width="20" height="14" viewBox="0 0 20 14"><path d="M10 2L18 12H2L10 2Z" fill="rgba(255,255,255,.3)"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Hologram Card</div>
+          <div class="product-tagline">Anti-counterfeit security · Rainbow hologram sticker · Premium matte finish</div>
+          <div class="product-price"><span class="price-from">from</span><span class="price-val">₹65</span><span class="price-unit">/card</span></div>
+          <div class="product-specs"><span class="spec-chip">Anti-counterfeit</span><span class="spec-chip">Premium</span><span class="spec-chip">Hologram sticker</span></div>
+          <button class="btn-configure">Configure & get price →</button>
+        </div>
+      </div>
+
+    </div>
   </div>
-  <p class="cta-note">Free design preview before printing &nbsp;·&nbsp; No advance for first 100 cards</p>
+</section>
+
+<!-- BULK DISCOUNT STRIP -->
+<div style="background:var(--green-mid);padding:16px clamp(16px,4vw,60px)">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div style="font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:var(--green)">Bulk discounts — the more you order, the more you save:</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <div style="background:#fff;border-radius:8px;padding:6px 16px;font-size:12px;font-weight:700;color:var(--ink)">50+ cards <span style="color:var(--green)">5% off</span></div>
+      <div style="background:#fff;border-radius:8px;padding:6px 16px;font-size:12px;font-weight:700;color:var(--ink)">100+ cards <span style="color:var(--green)">10% off</span></div>
+      <div style="background:#fff;border-radius:8px;padding:6px 16px;font-size:12px;font-weight:700;color:var(--ink)">500+ cards <span style="color:var(--green)">20% off</span></div>
+      <div style="background:var(--green);border-radius:8px;padding:6px 16px;font-size:12px;font-weight:700;color:#fff">1000+ cards 40% off 🎉</div>
+    </div>
+  </div>
 </div>
 
-<!-- STATS STRIP -->
-<div class="stats-strip">
-  <div class="stat-item">
-    <span class="stat-num">3 Days</span>
-    <span class="stat-lbl">Delivery Time</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">₹18+</span>
-    <span class="stat-lbl">Per Card</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">Zero</span>
-    <span class="stat-lbl">Data Entry Errors</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">100%</span>
-    <span class="stat-lbl">Digital Process</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">All TN</span>
-    <span class="stat-lbl">Delivery Coverage</span>
-  </div>
-</div>
+<!-- ESTIMATOR -->
+<section id="estimator">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-badge" style="background:rgba(255,255,255,.1);color:var(--green-light);border-color:rgba(255,255,255,.1)">Live Price Estimator</div>
+      <h2 class="section-title" style="color:#fff">Get your exact price<br>in 30 seconds</h2>
+    </div>
+    <div class="est-layout reveal">
+      <div class="est-steps">
 
-<!-- WHAT YOU GET -->
-<div class="section">
-  <div class="section-label">What You Get</div>
-  <div class="section-h">Everything included.<br><span>Nothing extra to buy.</span></div>
+        <div class="est-step active" id="step-type">
+          <div class="est-step-label"><span class="est-step-num">1</span>Card type</div>
+          <div class="est-options">
+            <button class="est-opt sel" data-type="Basic PVC" data-base="25" onclick="pickType(this)">Basic PVC</button>
+            <button class="est-opt" data-type="QR Code" data-base="32" onclick="pickType(this)">QR Code</button>
+            <button class="est-opt" data-type="RFID Smart" data-base="85" onclick="pickType(this)">RFID Smart</button>
+            <button class="est-opt" data-type="Hologram" data-base="65" onclick="pickType(this)">Hologram</button>
+          </div>
+        </div>
 
-  <div class="get-box">
-    <h3>📦 Complete ID Card Package</h3>
-    <ul class="get-list">
-      <li>Custom design with school logo & branding</li>
-      <li>Digital student data collection (mobile-friendly)</li>
-      <li>Live photo capture — no emailing photos</li>
-      <li>Students self-verify their own details</li>
-      <li>Auto-generated ID card — no manual work</li>
-      <li>Printed, laminated & delivered to your door</li>
-      <li>Digital record of every student — searchable forever</li>
-      <li>Re-print for lost cards anytime</li>
-      <li>Hologram, lanyard & card holder options</li>
-      <li>Annual maintenance — add new students easily</li>
-      <li>Free preview before final print</li>
-      <li>WhatsApp support included</li>
-    </ul>
+        <div class="est-step" id="step-print">
+          <div class="est-step-label"><span class="est-step-num">2</span>Print sides</div>
+          <div class="est-options">
+            <button class="est-opt sel" data-print="Single side" data-printcost="0" onclick="pickPrint(this)">Single side</button>
+            <button class="est-opt" data-print="Double side" data-printcost="8" onclick="pickPrint(this)">Double side +₹8</button>
+          </div>
+        </div>
+
+        <div class="est-step" id="step-lanyard">
+          <div class="est-step-label"><span class="est-step-num">3</span>Lanyard & holder</div>
+          <div class="est-options">
+            <button class="est-opt sel" data-lanyard="None" data-lanyardcost="0" onclick="pickLanyard(this)">None</button>
+            <button class="est-opt" data-lanyard="Lanyard only" data-lanyardcost="12" onclick="pickLanyard(this)">Lanyard +₹12</button>
+            <button class="est-opt" data-lanyard="Lanyard + holder" data-lanyardcost="20" onclick="pickLanyard(this)">Lanyard + holder +₹20</button>
+          </div>
+        </div>
+
+        <div class="est-step" id="step-qty">
+          <div class="est-step-label"><span class="est-step-num">4</span>Quantity — <span id="qtyLabel">100 cards</span></div>
+          <div class="est-slider-row">
+            <input type="range" class="est-slider" id="qtySlider" min="10" max="2000" step="10" value="100" oninput="updateQty(this.value)">
+            <div class="est-qty-display" id="qtyNum">100</div>
+          </div>
+          <div class="est-tier-bar">
+            <div><div class="tier-seg active" id="tier1"></div><div class="tier-label">10–49</div></div>
+            <div><div class="tier-seg" id="tier2"></div><div class="tier-label">50–99</div></div>
+            <div><div class="tier-seg" id="tier3"></div><div class="tier-label">100–499</div></div>
+            <div><div class="tier-seg" id="tier4"></div><div class="tier-label">500–999</div></div>
+            <div><div class="tier-seg" id="tier5"></div><div class="tier-label">1000+</div></div>
+          </div>
+        </div>
+
+        <div class="est-step" id="step-delivery">
+          <div class="est-step-label"><span class="est-step-num">5</span>Delivery speed</div>
+          <div class="est-options">
+            <button class="est-opt sel" data-del="Standard 3–5 days" data-delcost="0" onclick="pickDel(this)">Standard 3–5 days</button>
+            <button class="est-opt" data-del="Express 24h" data-delcost="0.15" onclick="pickDel(this)">Express 24h +15%</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="quote-panel">
+        <div class="quote-live"><div class="live-dot"></div>Live price — updating</div>
+        <div class="quote-card-name" id="qCardName">Basic PVC Card</div>
+        <div class="quote-card-sub" id="qCardSub">Single side · No lanyard · Standard delivery</div>
+        <div class="quote-breakdown">
+          <div class="qb-row"><span>Base price</span><span id="qBase">₹25.00 / card</span></div>
+          <div class="qb-row"><span>Print</span><span id="qPrint">Included</span></div>
+          <div class="qb-row"><span>Lanyard</span><span id="qLanyard">Not added</span></div>
+          <div class="qb-row"><span>Quantity</span><span id="qQty">100 cards</span></div>
+          <div class="qb-row"><span>Bulk discount</span><span id="qDiscount" style="color:var(--green-light)">10% off</span></div>
+          <div class="qb-row"><span>Delivery</span><span id="qDel">Standard (free)</span></div>
+          <div class="qb-row highlight"><span>Unit price</span><span id="qUnit">₹22.50</span></div>
+          <div class="qb-row savings" id="qSavingsRow"><span>You save</span><span id="qSavings">₹250</span></div>
+        </div>
+        <div class="quote-total">
+          <div class="qt-label">Total estimate</div>
+          <div><span class="qt-amount" id="qTotal">₹2,250</span> <span class="qt-unit">+ GST</span></div>
+        </div>
+        <button class="btn-order-wa" id="waOrderBtn" onclick="orderViaWhatsApp()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order via WhatsApp
+        </button>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- DEMO -->
+<section id="demo">
+  <div class="container">
+    <div class="demo-layout">
+      <div class="demo-phone reveal">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="phone-content">
+              <div class="phone-portal-header">
+                <h3>ID Card Portal</h3>
+                <p>Fill your details · Photo capture · Instant preview</p>
+              </div>
+              <div class="phone-form-field"><label>FULL NAME</label><div class="fval">Student Name</div></div>
+              <div class="phone-form-field"><label>REGISTER ID</label><div class="fval">SCH-2026-001</div></div>
+              <div class="phone-form-field"><label>CLASS / DEPARTMENT</label><div class="fval">Class XI — Science</div></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+                <div class="phone-form-field"><label>BLOOD GROUP</label><div class="fval">O+</div></div>
+                <div class="phone-form-field"><label>DOB</label><div class="fval">12/03/2010</div></div>
+              </div>
+              <div class="phone-preview-card">
+                <div class="phone-preview-photo"></div>
+                <div class="phone-preview-info">
+                  <div class="pname">STUDENT NAME</div>
+                  <div class="pid">ID: SCH-2026-001</div>
+                  <div class="pid">Class XI · O+</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-pulse">LIVE</div>
+      </div>
+      <div class="demo-content reveal">
+        <div class="section-badge">Live Demo</div>
+        <h2>Students fill their own data — <em>you just print</em></h2>
+        <p>Give each school a unique link. Students open it on their phone, fill in details, take a photo — the ID card is generated instantly and saved to your dashboard. No manual data entry for you.</p>
+        <div class="demo-features">
+          <div class="demo-feat"><div class="demo-feat-icon">📱</div>Works on any phone browser — no app needed</div>
+          <div class="demo-feat"><div class="demo-feat-icon">📸</div>Live camera capture or gallery upload</div>
+          <div class="demo-feat"><div class="demo-feat-icon">👁</div>Student sees instant ID card preview before saving</div>
+          <div class="demo-feat"><div class="demo-feat-icon">✅</div>Principal / teacher acknowledges before printing</div>
+          <div class="demo-feat"><div class="demo-feat-icon">📊</div>Admin dashboard — search, filter, export</div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://idcard.lumu.co.in/demo" target="_blank" class="btn-demo">
+            Try the live portal →
+          </a>
+          <button class="btn-demo-outline" onclick="window.open('https://wa.me/919999999999?text=I%20want%20to%20see%20a%20demo%20of%20the%20ID%20card%20portal','_blank')">
+            Request demo call
+          </button>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-top:12px">No login needed · Pre-filled with sample data</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- HOW IT WORKS -->
-<div class="section" id="how">
-  <div class="section-label">How It Works</div>
-  <div class="section-h">4 steps.<br><span>Ready in 3 days.</span></div>
-
-  <div class="steps">
-    <div class="step-card">
-      <div class="step-n">1</div>
-      <div class="step-title">Book & Design</div>
-      <div class="step-desc">You share school logo. We create a custom design. You approve it for free.</div>
+<section id="how">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:0">
+      <div class="section-badge">Process</div>
+      <h2 class="section-title">From order to delivery<br>in 4 simple steps</h2>
     </div>
-    <div class="step-card">
-      <div class="step-n">2</div>
-      <div class="step-title">Students Fill Details</div>
-      <div class="step-desc">We send a mobile-friendly form. Students fill name, photo, details — takes 2 minutes each.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-n">3</div>
-      <div class="step-title">Admin Approves</div>
-      <div class="step-desc">You review and approve all records in one place. ID cards auto-generate instantly.</div>
-    </div>
-    <div class="step-card">
-      <div class="step-n">4</div>
-      <div class="step-title">Print & Deliver</div>
-      <div class="step-desc">We print, laminate and deliver to your school door within 3–5 working days.</div>
-    </div>
-  </div>
-</div>
-
-<!-- PRICING -->
-<div class="section" id="pricing">
-  <div class="section-label">Pricing</div>
-  <div class="section-h">Simple pricing.<br><span>No hidden charges.</span></div>
-
-  <div class="pricing">
-    <div class="plan">
-      <div class="plan-name">BASIC</div>
-      <div class="plan-price">₹18</div>
-      <div class="plan-unit">per card · min 200 cards</div>
-      <ul class="plan-features">
-        <li>High GSM paper card</li>
-        <li>Both sides printed</li>
-        <li>Hot lamination</li>
-        <li>Digital data collection</li>
-        <li>Delivery included</li>
-      </ul>
-      <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20want%20LUMU%20Basic%20ID%20cards" class="plan-btn outline" target="_blank">WhatsApp to Order</a>
-    </div>
-
-    <div class="plan featured">
-      <div class="plan-badge">MOST POPULAR</div>
-      <div class="plan-name">STANDARD</div>
-      <div class="plan-price">₹38</div>
-      <div class="plan-unit">per card · min 100 cards</div>
-      <ul class="plan-features">
-        <li>PVC card (0.76mm)</li>
-        <li>Full colour both sides</li>
-        <li>Lamination included</li>
-        <li>Digital data collection</li>
-        <li>Admin search portal</li>
-        <li>Delivery included</li>
-      </ul>
-      <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20want%20LUMU%20Standard%20ID%20cards" class="plan-btn" target="_blank">WhatsApp to Order</a>
-    </div>
-
-    <div class="plan">
-      <div class="plan-name">PREMIUM</div>
-      <div class="plan-price">₹75</div>
-      <div class="plan-unit">per card · min 100 cards</div>
-      <ul class="plan-features">
-        <li>PVC card + Hologram</li>
-        <li>Lanyard + card holder</li>
-        <li>Premium print finish</li>
-        <li>Digital data collection</li>
-        <li>Admin search portal</li>
-        <li>Annual maintenance</li>
-        <li>Priority delivery</li>
-      </ul>
-      <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20want%20LUMU%20Premium%20ID%20cards" class="plan-btn outline" target="_blank">WhatsApp to Order</a>
-    </div>
-
-    <div class="plan">
-      <div class="plan-name">SETUP ONLY</div>
-      <div class="plan-price">₹3,500</div>
-      <div class="plan-unit">one-time · for existing printers</div>
-      <ul class="plan-features">
-        <li>Full system deployed for you</li>
-        <li>Custom template design</li>
-        <li>Data collection form ready</li>
-        <li>Admin search portal</li>
-        <li>Training included</li>
-        <li>You handle printing</li>
-      </ul>
-      <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20want%20LUMU%20ID%20card%20system%20setup" class="plan-btn outline" target="_blank">WhatsApp to Order</a>
+    <div class="how-steps reveal" style="position:relative">
+      <div class="how-connector"></div>
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <div class="how-title">WhatsApp or fill form</div>
+        <div class="how-desc">Message us on WhatsApp or use the enquiry form. Tell us card type, quantity, and your school name.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <div class="how-title">We send you a portal link</div>
+        <div class="how-desc">Your school gets a unique web link. Students fill in their details and photo from their own phones.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <div class="how-title">We design & print</div>
+        <div class="how-desc">Our team designs the ID card layout with your school logo and prints using professional PVC printers.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">4</div>
+        <div class="how-title">Delivered to your door</div>
+        <div class="how-desc">Cards packed and shipped to your school via courier. Tracked delivery with GST invoice included.</div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- COMPARISON -->
-<div class="section">
-  <div class="section-label">Why LUMU</div>
-  <div class="section-h">LUMU vs<br><span>Traditional ID card printing</span></div>
-
-  <table class="comp-table">
-    <thead>
-      <tr>
-        <th>Feature</th>
-        <th>Traditional Printer</th>
-        <th>LUMU ID Cards</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Data collection</td><td class="no">Manual / Excel / paper</td><td class="yes">Digital — students fill themselves</td></tr>
-      <tr><td>Photo collection</td><td class="no">Email / WhatsApp chaos</td><td class="yes">Live mobile camera capture</td></tr>
-      <tr><td>Name errors</td><td class="no">5–15% mistakes common</td><td class="yes">Near zero — student verified</td></tr>
-      <tr><td>Turnaround time</td><td class="no">7–21 days</td><td class="yes">3–5 working days</td></tr>
-      <tr><td>Digital records</td><td class="no">None</td><td class="yes">Searchable database forever</td></tr>
-      <tr><td>Re-print lost card</td><td class="no">Full process again</td><td class="yes">1 click reprint</td></tr>
-      <tr><td>Admin search portal</td><td class="no">Not available</td><td class="yes">Included in Standard+</td></tr>
-      <tr><td>Cost</td><td>₹60–120/card</td><td class="yes">₹18–75/card all inclusive</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- TESTIMONIALS -->
-<div class="section">
-  <div class="section-label">What Schools Are Saying</div>
-  <div class="section-h">Trusted by institutions<br><span>across Coimbatore</span></div>
-
-  <div class="testimonials">
-    <div class="testi">
-      <div class="stars">★★★★★</div>
-      <p class="testi-text">"Earlier we spent 2 weeks collecting data and chasing photos on WhatsApp. With LUMU the entire process finished in 1 day. Cards delivered in 3 days. Outstanding."</p>
-      <div class="testi-name">Mr. Rajan K.</div>
-      <div class="testi-role">Principal · Matric School, Coimbatore</div>
+<!-- TRUST -->
+<section id="trust" style="background:#fff">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-badge">Why schools choose us</div>
+      <h2 class="section-title">Trusted by 500+<br>institutions</h2>
     </div>
-    <div class="testi">
-      <div class="stars">★★★★★</div>
-      <p class="testi-text">"Students filled their own details from home. Zero errors in 450 cards. The admin search portal is brilliant — find any student record in seconds. Worth every rupee."</p>
-      <div class="testi-name">Mrs. Priya S.</div>
-      <div class="testi-role">Admin Officer · Arts College, Erode</div>
+    <div class="trust-grid reveal">
+      <div class="trust-card"><div class="trust-num">500+</div><div class="trust-lbl">Schools & colleges served</div></div>
+      <div class="trust-card"><div class="trust-num">2L+</div><div class="trust-lbl">ID cards printed & delivered</div></div>
+      <div class="trust-card"><div class="trust-num">24h</div><div class="trust-lbl">Express turnaround available</div></div>
+      <div class="trust-card"><div class="trust-num">40%</div><div class="trust-lbl">Bulk discount at 1000+ cards</div></div>
     </div>
-    <div class="testi">
-      <div class="stars">★★★★★</div>
-      <p class="testi-text">"We are an ID card printing shop. After LUMU setup we can serve 5x more schools with same staff. The system is simple and our clients are very impressed."</p>
-      <div class="testi-name">Selvam M.</div>
-      <div class="testi-role">Owner · ID Card Shop, Tiruppur</div>
+    <div class="testimonials reveal" style="margin-top:28px">
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">"We ordered 600 ID cards for our school. The online data collection saved us so much time — no manual entry at all. Cards arrived in 3 days, quality was excellent."</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#006a5e">SR</div>
+          <div><div class="testi-name">Srimathi Rajendran</div><div class="testi-role">Principal · Govt. Higher Secondary School, Coimbatore</div></div>
+        </div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">"RFID cards work perfectly with our attendance system. The admin portal is amazing — the principal can search any student in seconds. Highly recommend."</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#1e40af">KM</div>
+          <div><div class="testi-name">Rajesh Kumar</div><div class="testi-role">IT Head · Sri Vidya Engineering College, Salem</div></div>
+        </div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <div class="testi-text">"We run 3 coaching centres. Each centre gets its own portal link and the students fill their data themselves. The ID cards look very professional. Worth every rupee."</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#7c3aed">PR</div>
+          <div><div class="testi-name">Meena Sundaram</div><div class="testi-role">Director · Excel IAS Academy, Chennai</div></div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- FAQ -->
-<div class="section">
-  <div class="section-label">Got Questions?</div>
-  <div class="section-h">Frequently asked<br><span>questions</span></div>
-
-  <div class="faq-list">
-    <details class="faq">
-      <summary>How do students fill their details?</summary>
-      <div class="faq-body">We set up a simple web form (no app download needed). Students open it on their mobile, type their name and details, take a live photo with their camera, and submit. Takes about 2 minutes per student.</div>
-    </details>
-    <details class="faq">
-      <summary>What if a student makes a spelling mistake?</summary>
-      <div class="faq-body">Our system has a self-verification step — students review and confirm their own details before submitting. Admin also approves before printing. This makes name errors nearly zero.</div>
-    </details>
-    <details class="faq">
-      <summary>Do you deliver outside Coimbatore?</summary>
-      <div class="faq-body">Yes — we deliver anywhere in Tamil Nadu. For other states, delivery may take 2 extra days. Courier charges may apply for very small orders outside Tamil Nadu.</div>
-    </details>
-    <details class="faq">
-      <summary>What is the minimum order quantity?</summary>
-      <div class="faq-body">Basic: 200 cards minimum. Standard and Premium: 100 cards minimum. For events or corporate: 50 cards minimum (pricing adjusted).</div>
-    </details>
-    <details class="faq">
-      <summary>Can we add new students later in the year?</summary>
-      <div class="faq-body">Yes — with our Standard and Premium packages, you can add new students anytime and order a small re-print batch. No need to redo the entire process.</div>
-    </details>
-    <details class="faq">
-      <summary>I already have a printer. Can I just buy the software system?</summary>
-      <div class="faq-body">Yes — our ₹3,500 Setup Only plan gives you the complete digital system deployed for your school. You handle printing using your existing setup. We provide training and support.</div>
-    </details>
-    <details class="faq">
-      <summary>How do I pay?</summary>
-      <div class="faq-body">UPI / bank transfer for setup fees. For bulk card orders, 50% advance and 50% on delivery. We also accept Razorpay payment link. No cash handling required.</div>
-    </details>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="enquiry-layout">
+      <div class="enquiry-info reveal">
+        <div class="section-badge" style="background:rgba(255,255,255,.1);color:var(--green-light);border-color:rgba(255,255,255,.1)">Get in touch</div>
+        <h2>Ready to get started?<br>Let's talk.</h2>
+        <p>Fill the quick form and we'll send you a WhatsApp message with a sample ID card design for your school within 2 hours.</p>
+        <div class="contact-options">
+          <a href="https://wa.me/919999999999" target="_blank" class="contact-opt">
+            <span class="contact-opt-icon">💬</span>
+            <div><div class="contact-opt-label">WhatsApp</div><div class="contact-opt-val">+91 99999 99999</div></div>
+          </a>
+          <a href="mailto:hello@lumu.co.in" class="contact-opt">
+            <span class="contact-opt-icon">✉️</span>
+            <div><div class="contact-opt-label">Email</div><div class="contact-opt-val">hello@lumu.co.in</div></div>
+          </a>
+          <div class="contact-opt">
+            <span class="contact-opt-icon">🌐</span>
+            <div><div class="contact-opt-label">Website</div><div class="contact-opt-val">lumu.co.in</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="enquiry-form">
+          <div class="form-row">
+            <div class="form-group"><label>Your name</label><input type="text" id="f-name" placeholder="Your full name"></div>
+            <div class="form-group"><label>Phone number</label><input type="tel" id="f-phone" placeholder="98765 43210"></div>
+          </div>
+          <div class="form-group" style="margin-bottom:14px"><label>School / organisation name</label><input type="text" id="f-org" placeholder="Demo High School, Chennai"></div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Card type needed</label>
+              <select id="f-type">
+                <option value="Basic PVC">Basic PVC — ₹25</option>
+                <option value="QR Code">QR Code — ₹32</option>
+                <option value="RFID Smart">RFID Smart — ₹85</option>
+                <option value="Hologram">Hologram — ₹65</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Approximate quantity</label>
+              <select id="f-qty">
+                <option value="10–50">10–50 cards</option>
+                <option value="51–100" selected>51–100 cards</option>
+                <option value="101–500">101–500 cards</option>
+                <option value="501–1000">501–1000 cards</option>
+                <option value="1000+">1000+ cards</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn-submit" onclick="submitEnquiry()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Send Enquiry via WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-
-<!-- FINAL CTA -->
-<div class="final-cta">
-  <div class="section-label" style="text-align:center">Ready to Start?</div>
-  <h2>Professional ID cards for your school.<br>Starting at just ₹18 per card.</h2>
-  <div class="final-price">
-    <span class="final-old">₹60/card elsewhere</span>
-    <span class="final-new">₹18</span>
-    <span class="final-save">SAVE 70%</span>
-  </div>
-  <div class="cta-row">
-    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20want%20LUMU%20ID%20cards%20for%20my%20school" class="btn-main" target="_blank">📱 WhatsApp Us Now</a>
-    <a href="mailto:hello@lumu.co.in" class="btn-outline">✉ Email Us</a>
-  </div>
-  <p class="final-note">
-    Secure payment via UPI / Razorpay &nbsp;·&nbsp; Free design preview &nbsp;·&nbsp; Delivery across Tamil Nadu
-  </p>
-</div>
+</section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">LUMU</div>
-  <div class="footer-tagline">Learn · Upgrade · Make · Use</div>
-  <div class="footer-links">
-    <a href="https://lumu.co.in">Home</a>
-    <a href="https://lumu.co.in">PMP Study Material</a>
-    <a href="#">ID Card System</a>
-    <a href="https://wa.me/91XXXXXXXXXX">WhatsApp</a>
-    <a href="mailto:hello@lumu.co.in">Email</a>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">LU<span>MU</span> · ID Genius Systems</div>
+      <div class="footer-brand">Smart ID card automation for schools<br>and institutions across India.<br><br>lumu.co.in · hello@lumu.co.in<br>© 2026 ID Genius Systems. All rights reserved.</div>
+    </div>
+    <div>
+      <ul class="footer-links">
+        <h4>Quick links</h4>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#estimator">Pricing estimator</a></li>
+        <li><a href="#demo">Live demo</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#contact">Contact us</a></li>
+      </ul>
+    </div>
+    <div>
+      <ul class="footer-links">
+        <h4>Products</h4>
+        <li><a href="#products">Basic PVC cards</a></li>
+        <li><a href="#products">QR Code cards</a></li>
+        <li><a href="#products">RFID smart cards</a></li>
+        <li><a href="#products">Hologram cards</a></li>
+        <li><a href="https://idcard.lumu.co.in/demo" target="_blank">Try live portal</a></li>
+      </ul>
+    </div>
   </div>
-  <p class="footer-copy">© 2026 LUMU. Crafted in Coimbatore, Tamil Nadu. Serving schools across India.</p>
+  <div class="footer-bottom">
+    <span>© 2026 ID Genius Systems · lumu.co.in</span>
+    <span>GST invoices provided · Pan India delivery · Made in Tamil Nadu</span>
+  </div>
 </footer>
 
+<!-- FLOATING WA -->
+<a href="https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20enquire%20about%20ID%20cards" target="_blank" class="wa-float" title="Chat on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <div class="wa-badge">1</div>
+</a>
+
+<script>
+// ── ESTIMATOR STATE ──
+const state = {
+  type:'Basic PVC', base:25, print:0, lanyard:0, qty:100,
+  del:0, delLabel:'Standard (free)',
+  printLabel:'Included', lanyardLabel:'Not added'
+};
+
+const discountTiers = [
+  {min:1,   max:49,   pct:0,   label:'No discount'},
+  {min:50,  max:99,   pct:5,   label:'5% off'},
+  {min:100, max:499,  pct:10,  label:'10% off'},
+  {min:500, max:999,  pct:20,  label:'20% off'},
+  {min:1000,max:99999,pct:40,  label:'40% off'},
+];
+
+function getTier(qty) {
+  return discountTiers.find(t => qty >= t.min && qty <= t.max) || discountTiers[0];
+}
+
+function calcQuote() {
+  const tier = getTier(state.qty);
+  let unit = (state.base + state.print + state.lanyard);
+  if (state.del > 0) unit = unit * (1 + state.del);
+  const discounted = unit * (1 - tier.pct/100);
+  const total = discounted * state.qty;
+  const saving = (unit - discounted) * state.qty;
+  return {unit:discounted, total, saving, tier, unitBeforeDiscount:unit};
+}
+
+function updateQuote() {
+  const q = calcQuote();
+  document.getElementById('qCardName').textContent = state.type + ' Card';
+  document.getElementById('qCardSub').textContent =
+    (state.print===0?'Single side':'Double side') + ' · ' +
+    (state.lanyard===0?'No lanyard':state.lanyardLabel) + ' · ' +
+    state.delLabel;
+  document.getElementById('qBase').textContent = '₹'+state.base+' / card';
+  document.getElementById('qPrint').textContent = state.print===0?'Included':'+₹'+state.print;
+  document.getElementById('qLanyard').textContent = state.lanyard===0?'Not added':'+₹'+state.lanyard;
+  document.getElementById('qQty').textContent = state.qty+' cards';
+  document.getElementById('qDiscount').textContent = q.tier.pct > 0 ? q.tier.pct+'% off' : 'No discount';
+  document.getElementById('qDel').textContent = state.delLabel;
+  document.getElementById('qUnit').textContent = '₹'+q.unit.toFixed(2);
+  document.getElementById('qTotal').textContent = '₹'+Math.round(q.total).toLocaleString('en-IN');
+  document.getElementById('qSavings').textContent = '₹'+Math.round(q.saving).toLocaleString('en-IN');
+  document.getElementById('qSavingsRow').style.display = q.saving > 0 ? 'flex' : 'none';
+  // tier bar
+  for(let i=1;i<=5;i++) {
+    const seg = document.getElementById('tier'+i);
+    const t = discountTiers[i-1];
+    seg.classList.toggle('active', state.qty >= t.min && state.qty <= t.max);
+  }
+  document.getElementById('qtyLabel').textContent = state.qty+' cards';
+  document.getElementById('qtyNum').textContent = state.qty;
+}
+
+function pickType(btn) {
+  document.querySelectorAll('#step-type .est-opt').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  state.type = btn.dataset.type;
+  state.base = parseInt(btn.dataset.base);
+  updateQuote();
+}
+function pickPrint(btn) {
+  document.querySelectorAll('#step-print .est-opt').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  state.print = parseInt(btn.dataset.printcost);
+  state.printLabel = btn.dataset.print;
+  updateQuote();
+}
+function pickLanyard(btn) {
+  document.querySelectorAll('#step-lanyard .est-opt').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  state.lanyard = parseInt(btn.dataset.lanyardcost);
+  state.lanyardLabel = btn.dataset.lanyard;
+  updateQuote();
+}
+function pickDel(btn) {
+  document.querySelectorAll('#step-delivery .est-opt').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  state.del = parseFloat(btn.dataset.delcost);
+  state.delLabel = btn.dataset.del;
+  updateQuote();
+}
+function updateQty(val) {
+  state.qty = parseInt(val);
+  updateQuote();
+}
+
+function selectCardType(type, base) {
+  state.type = type; state.base = base;
+  document.querySelectorAll('#step-type .est-opt').forEach(b=>{
+    b.classList.toggle('sel', b.dataset.type===type);
+  });
+  document.getElementById('estimator').scrollIntoView({behavior:'smooth'});
+  updateQuote();
+}
+
+function orderViaWhatsApp() {
+  const q = calcQuote();
+  const msg = `Hi LUMU ID Genius Systems! 👋\n\nI'd like to place an order:\n\n📋 *Order Details*\n• Card type: ${state.type}\n• Print: ${state.print===0?'Single side':'Double side'}\n• Lanyard: ${state.lanyard===0?'None':state.lanyardLabel}\n• Quantity: ${state.qty} cards\n• Delivery: ${state.delLabel}\n\n💰 *Price Summary*\n• Unit price: ₹${q.unit.toFixed(2)}/card\n• Bulk discount: ${q.tier.pct}% off\n• Total estimate: ₹${Math.round(q.total).toLocaleString('en-IN')} + GST\n\nPlease confirm and share the next steps. Thank you!`;
+  window.open('https://wa.me/919999999999?text='+encodeURIComponent(msg),'_blank');
+}
+
+function submitEnquiry() {
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const org = document.getElementById('f-org').value.trim();
+  const type = document.getElementById('f-type').value;
+  const qty = document.getElementById('f-qty').value;
+  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  const msg = `Hi! I'd like to enquire about ID cards. 👋\n\n*My Details:*\n• Name: ${name}\n• Phone: ${phone}\n• Organisation: ${org||'Not specified'}\n• Card type: ${type}\n• Quantity: ${qty}\n\nPlease send me more details. Thank you!`;
+  window.open('https://wa.me/919999999999?text='+encodeURIComponent(msg),'_blank');
+}
+
+// ── QR GRID PATTERN ──
+const qrData = [1,1,1,0,1,1,1,1,0,0,0,1,0,1,1,1,1,0,1,1,1,0,0,1,0,0,0,1,0,1,0,0,0,1,0,1,1,1,1,0,1,1,1,0,0,1,0,0,0,1];
+const grid = document.getElementById('qrGrid');
+if(grid){qrData.slice(0,49).forEach(b=>{const c=document.createElement('div');c.className='qc';c.style.background=b?'#1e3a8a':'transparent';grid.appendChild(c)});}
+
+// ── SCROLL REVEAL ──
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ── INIT ──
+updateQuote();
+</script>
 </body>
 </html>
