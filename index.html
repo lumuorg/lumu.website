@@ -211,7 +211,7 @@ canvas{position:fixed;inset:0;z-index:0}
 <script>
 const cv=document.getElementById('c'),ct=cv.getContext('2d');
 let W,H,pts=[],mouse={x:-9999,y:-9999};
-const N=100, CONN=250, MR=160;
+const N=80, CONN=160, MR=160;
 
 function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight}
 resize();window.addEventListener('resize',resize);
