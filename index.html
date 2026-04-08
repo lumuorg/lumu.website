@@ -211,7 +211,7 @@ canvas{position:fixed;inset:0;z-index:0}
 <script>
 const cv=document.getElementById('c'),ct=cv.getContext('2d');
 let W,H,pts=[],mouse={x:-9999,y:-9999};
-const N=80, CONN=150, MR=160;
+const N=100, CONN=250, MR=160;
 
 function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight}
 resize();window.addEventListener('resize',resize);
@@ -235,8 +235,8 @@ for(let i=0;i<N;i++)pts.push({
         ct.moveTo(pts[i].x,pts[i].y);
         ct.lineTo(pts[j].x,pts[j].y);
         // INCREASED VISIBILITY & STROKE WIDTH
-        ct.strokeStyle=`rgba(212, 160, 23, ${(1-d/CONN)*0.45})`; 
-        ct.lineWidth=1.2; 
+        ct.strokeStyle=`rgba(212, 160, 23, ${(1-d/CONN)*0.75})`; 
+        ct.lineWidth=2.4; 
         ct.stroke();
       }
     }
