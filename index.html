@@ -1,738 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>LUMU</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --gold:#D4A017;--gold-light:#F5C842;--navy:#080F1E;--navy-mid:#0E1A30;--navy-light:#172540;
-  --teal:#0EA5A0;--teal-light:#4DD9D4;--white:#FFFFFF;--green:#22C55E;
-  --font:'Nunito Sans',sans-serif;
+  --gold:#C9A84C;
+  --gold-light:#E8C96A;
+  --gold-dim:#8A6E2F;
+  --bg:#07080D;
+  --muted:#5A5850;
+  --muted2:#9A9488;
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--navy);color:#fff;line-height:1.6;overflow-x:hidden}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg)}
+canvas{position:fixed;inset:0;z-index:0}
 
-/* ── ANIMATIONS ────────────────────────────────── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes floatBook{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-14px) rotate(3deg)}}
-@keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(212,160,23,.35)}60%{box-shadow:0 0 0 10px rgba(212,160,23,0)}}
-@keyframes ringExpand{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
-@keyframes shimmerGold{0%{background-position:-200% center}100%{background-position:200% center}}
-@keyframes countBounce{0%{transform:translateY(20px) scale(.8);opacity:0}70%{transform:translateY(-4px) scale(1.05)}100%{transform:translateY(0) scale(1);opacity:1}}
-@keyframes barFill{from{width:0!important}to{}}
-@keyframes checkSlide{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
-@keyframes stepPop{0%{transform:scale(0) rotate(-15deg);opacity:0}65%{transform:scale(1.15) rotate(3deg)}100%{transform:scale(1) rotate(0);opacity:1}}
-@keyframes cardRise{from{opacity:0;transform:translateY(44px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes tSlideL{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
-@keyframes tSlideR{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
-@keyframes lineGrow{from{width:0}to{width:56px}}
-@keyframes scrollBob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
-@keyframes particleRise{0%{transform:translateY(0) scale(0);opacity:0}10%{opacity:.7}85%{opacity:.2}100%{transform:translateY(-110vh) scale(1.3);opacity:0}}
-@keyframes letterDrop{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
-@keyframes digitFlip{from{transform:rotateX(-90deg);opacity:0}to{transform:rotateX(0);opacity:1}}
-@keyframes glowPulse{0%,100%{text-shadow:none}50%{text-shadow:0 0 20px rgba(212,160,23,.5)}}
-@keyframes pencilDraw{from{stroke-dashoffset:300}to{stroke-dashoffset:0}}
-@keyframes faqOpen{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-@keyframes iconBounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}70%{transform:translateY(-2px)}}
-
-/* ── HEADER ────────────────────────────────────── */
-.hdr{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(8,15,30,.97);backdrop-filter:blur(18px);border-bottom:1px solid rgba(212,160,23,.2);padding:13px 28px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:1.15rem;font-weight:900;color:var(--gold);line-height:1;cursor:default}
-.logo .lu{display:inline-block}.logo .mu{color:#fff}
-.logo .l1{animation:letterDrop .35s ease .05s both;display:inline-block}
-.logo .l2{animation:letterDrop .35s ease .12s both;display:inline-block}
-.logo .l3{animation:letterDrop .35s ease .19s both;display:inline-block}
-.logo .l4{animation:letterDrop .35s ease .26s both;display:inline-block}
-.logo-tag{font-size:.82rem;letter-spacing:2.5px;color:rgba(255,255,255,.45);font-weight:600;text-transform:uppercase;margin-top:2px}
-.btn{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);font-family:var(--font);font-weight:700;font-size:.88rem;padding:10px 22px;border:none;border-radius:7px;cursor:pointer;text-decoration:none;display:inline-block;transition:transform .2s,box-shadow .2s;position:relative}
-.btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(212,160,23,.4)}
-.btn-o{background:transparent;color:var(--gold);border:1.5px solid rgba(212,160,23,.6);border-radius:7px;font-family:var(--font);font-weight:600;font-size:.88rem;padding:10px 22px;text-decoration:none;display:inline-block;transition:all .2s}
-.btn-o:hover{background:rgba(212,160,23,.08)}
-.container{max-width:1080px;margin:0 auto;padding:0 24px}
-
-/* ── COUNTDOWN ─────────────────────────────────── */
-.cdbar{background:linear-gradient(90deg,rgba(14,165,160,.14),rgba(212,160,23,.14));border-top:1px solid rgba(14,165,160,.2);border-bottom:1px solid rgba(14,165,160,.2);padding:12px 20px;text-align:center;font-size:.88rem;color:var(--teal-light);font-weight:600}
-.cdu{display:inline-block;background:var(--navy-mid);border:1px solid rgba(77,217,212,.3);border-radius:5px;padding:3px 10px;font-weight:800;font-size:1rem;color:var(--teal-light);min-width:36px;text-align:center;font-variant-numeric:tabular-nums;margin:0 2px;perspective:400px}
-.cdu.flip{animation:digitFlip .22s ease both}
-
-/* ── HERO ──────────────────────────────────────── */
-.hero{padding:20px 24px 80px;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(14,165,160,.12),transparent 68%),radial-gradient(ellipse 50% 35% at 85% 100%,rgba(212,160,23,.08),transparent 65%)}
-.hero>*{position:relative;z-index:2}
-#ptcl{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.particle{position:absolute;border-radius:50%;animation:particleRise linear infinite;opacity:0}
-.hero-book{font-size:clamp(3.2rem,8vw,5rem);display:block;margin:0 auto 18px;animation:floatBook 3.6s ease-in-out infinite;line-height:1}
-.hbadge{display:inline-block;background:rgba(212,160,23,.11);border:1px solid rgba(212,160,23,.32);color:var(--gold-light);font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 20px;border-radius:50px;margin-bottom:26px;animation:badgePulse 3s ease-in-out infinite,fadeUp .5s ease .2s both}
-.hero h1{font-size:clamp(1.2rem,2.4vw,2rem);font-weight:900;line-height:1.1;color:#fff;max-width:800px;margin:0 auto 22px;letter-spacing:-.8px;animation:fadeUp .6s ease .35s both}
-.hero h1 span{color:var(--gold);animation:glowPulse 3s ease-in-out infinite 2s}
-.hsub{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,.78);max-width:560px;margin:0 auto 40px;line-height:1.8;animation:fadeUp .6s ease .5s both}
-.pbox{display:inline-flex;align-items:baseline;gap:14px;background:rgba(255,255,255,.04);border:1px solid rgba(212,160,23,.22);border-radius:14px;padding:20px 38px;margin-bottom:32px;animation:fadeUp .6s ease .6s both}
-.pold{font-size:2.5rem;text-decoration:line-through;color:rgba(255,255,255,.38)}
-.pnew{font-size:3rem;font-weight:900;color:var(--gold);letter-spacing:-1px}
-.psave{background:var(--green);color:#fff;font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:4px;letter-spacing:.8px;text-transform:uppercase}
-.hctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:44px;animation:fadeUp .6s ease .7s both}
-.hctas .btn,.hctas .btn-o{font-size:1rem;padding:15px 36px;border-radius:9px}
-/* ring effect on main CTA */
-.btn-wrap{position:relative;display:inline-block}
-.btn-wrap::before,.btn-wrap::after{content:'';position:absolute;inset:-5px;border-radius:13px;border:2px solid rgba(212,160,23,.5);animation:ringExpand 2s ease-out infinite;pointer-events:none}
-.btn-wrap::after{animation-delay:1s}
-.tbstrip{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-bottom:14px;animation:fadeUp .6s ease .8s both}
-.tb{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:8px;padding:8px 14px;font-size:.8rem;color:#fff;font-weight:500;transition:border-color .2s,transform .2s}
-.tb:hover{border-color:rgba(212,160,23,.4);transform:translateY(-2px)}
-.global{display:inline-flex;align-items:center;gap:8px;background:rgba(77,217,212,.07);border:1px solid rgba(77,217,212,.2);border-radius:50px;padding:7px 18px;font-size:.78rem;color:var(--teal-light);font-weight:500;margin-top:12px;animation:fadeUp .6s ease .9s both}
-.scroll-bob{font-size:1.3rem;color:rgba(255,255,255,.25);margin-top:18px;display:block;animation:scrollBob 1.6s ease-in-out infinite,fadeIn 1s ease 1.5s both}
-
-/* ── SECTIONS ──────────────────────────────────── */
-section{padding:76px 24px}
-.slabel{font-size:.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-light);margin-bottom:11px}
-.stitle{font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:900;line-height:1.15;color:#fff;margin-bottom:14px;letter-spacing:-.4px;position:relative;display:inline-block}
-.stitle::after{content:'';display:block;height:3px;background:linear-gradient(90deg,var(--gold),var(--teal));border-radius:2px;margin-top:7px;width:0;transition:width .9s cubic-bezier(.22,1,.36,1)}
-.stitle.lit::after{width:56px}
-.stitle span{color:var(--gold)}
-.ssub{font-size:.96rem;font-weight:300;color:rgba(255,255,255,.72);max-width:530px;line-height:1.8;margin-bottom:44px}
-
-/* ── STATS ─────────────────────────────────────── */
-.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:8px}
-.sc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:22px 14px;text-align:center;transition:transform .25s,border-color .25s;cursor:default;overflow:hidden;position:relative}
-.sc:hover{transform:translateY(-4px);border-color:rgba(212,160,23,.35)}
-.sc .n{font-size:2.3rem;font-weight:900;color:var(--gold);display:block;line-height:1;margin-bottom:7px;letter-spacing:-1px;transition:all .3s}
-.sc.go .n{animation:countBounce .6s cubic-bezier(.22,1,.36,1) both}
-.sc:nth-child(1).go .n{animation-delay:.05s}
-.sc:nth-child(2).go .n{animation-delay:.15s}
-.sc:nth-child(3).go .n{animation-delay:.25s}
-.sc:nth-child(4).go .n{animation-delay:.35s}
-.sc:nth-child(5).go .n{animation-delay:.45s}
-.sc:hover .n{background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--teal-light),var(--gold));background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmerGold 1.2s linear}
-.sc .l{font-size:.76rem;color:rgba(255,255,255,.65);font-weight:500}
-
-/* ── ABOUT SECTION ─────────────────────────────── */
-.about-intro{background:var(--navy-mid);border:1px solid rgba(212,160,23,.2);border-radius:20px;padding:36px 40px;margin-bottom:28px;position:relative;overflow:hidden}
-.about-intro::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(212,160,23,.07),transparent 70%);pointer-events:none}
-.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-bottom:24px}
-.info-card{background:var(--navy-mid);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:26px;transition:transform .25s,border-color .25s}
-.info-card:hover{transform:translateY(-4px);border-color:rgba(77,217,212,.2)}
-.info-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;animation:iconBounce 2.5s ease-in-out infinite}
-.chk{display:flex;flex-direction:column;gap:9px}
-.chk-item{display:flex;gap:10px;align-items:flex-start;opacity:0;transform:translateX(-16px);transition:opacity .4s ease,transform .4s ease}
-.chk-item.show{opacity:1;transform:translateX(0)}
-.for-card{display:flex;gap:11px;align-items:flex-start;padding:11px 13px;background:rgba(77,217,212,.05);border-radius:10px;border:1px solid rgba(77,217,212,.1);transition:background .2s,transform .2s}
-.for-card:hover{background:rgba(77,217,212,.1);transform:translateX(4px)}
-.study-card{background:linear-gradient(135deg,rgba(14,165,160,.08),rgba(212,160,23,.05));border:1px solid rgba(14,165,160,.2);border-radius:16px;padding:30px 34px}
-.step-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:18px}
-.step-item{display:flex;gap:13px;align-items:flex-start}
-.step-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem;color:var(--navy);flex-shrink:0;opacity:0;transform:scale(0) rotate(-15deg);transition:opacity .4s,transform .4s}
-.step-num.pop{opacity:1;transform:scale(1) rotate(0);animation:stepPop .5s cubic-bezier(.34,1.56,.64,1) both}
-
-/* ── DOMAINS ───────────────────────────────────── */
-.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px;margin-top:44px}
-.dc{background:var(--navy-mid);border-radius:18px;padding:30px;border:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:20px;opacity:0;transform:translateY(40px) scale(.97);transition:opacity .55s ease,transform .55s ease,border-color .25s}
-.dc.show{opacity:1;transform:translateY(0) scale(1)}
-.dc:hover{border-color:rgba(212,160,23,.28);transform:translateY(-5px) scale(1)!important}
-.dc.pe{border-top:3px solid #4DD9D4}.dc.pr{border-top:3px solid var(--gold)}.dc.be{border-top:3px solid #A78BFA}
-.dh{display:flex;align-items:center;gap:15px}
-.di{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;flex-shrink:0;transition:transform .3s}
-.dc:hover .di{transform:rotate(8deg) scale(1.1)}
-.pe .di{background:rgba(77,217,212,.1)}.pr .di{background:rgba(212,160,23,.1)}.be .di{background:rgba(167,139,250,.1)}
-.dt{font-size:1.15rem;font-weight:900;color:#fff;letter-spacing:-.2px}
-.dm{font-size:.76rem;color:rgba(255,255,255,.58);margin-top:3px}
-.dstats{display:flex;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.07)}
-.dst{flex:1;text-align:center;padding:12px 7px;background:rgba(255,255,255,.025);border-right:1px solid rgba(255,255,255,.06)}
-.dst:last-child{border-right:none}
-.dsn{font-size:1.3rem;font-weight:900;display:block;line-height:1;margin-bottom:3px}
-.pe .dsn{color:#4DD9D4}.pr .dsn{color:var(--gold)}.be .dsn{color:#A78BFA}
-.dsl{font-size:.66rem;color:rgba(255,255,255,.55)}
-.chips{display:flex;flex-wrap:wrap;gap:7px}
-.chip{font-size:.75rem;font-weight:600;padding:5px 12px;border-radius:20px;cursor:default;transition:transform .2s,box-shadow .2s}
-.chip:hover{transform:translateY(-3px) scale(1.07);box-shadow:0 6px 16px rgba(0,0,0,.35)}
-.pe .chip{background:rgba(77,217,212,.1);color:#6EE7E7;border:1px solid rgba(77,217,212,.2)}
-.pr .chip{background:rgba(212,160,23,.1);color:#F5C842;border:1px solid rgba(212,160,23,.2)}
-.be .chip{background:rgba(167,139,250,.1);color:#C4B5FD;border:1px solid rgba(167,139,250,.2)}
-.ebar{margin-top:2px}
-.ebl{display:flex;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,.58);margin-bottom:6px}
-.ebt{height:5px;border-radius:10px;background:rgba(255,255,255,.08);overflow:hidden}
-.ebf{height:100%;border-radius:10px;width:0;transition:width 1.4s cubic-bezier(.22,1,.36,1)}
-.dc.show .pe .ebf,.pe.show .ebf{width:42%}
-.dc.show .pr .ebf,.pr.show .ebf,.dc.pr.show .ebf{width:50%}
-.dc.show .be .ebf,.be.show .ebf,.dc.be.show .ebf{width:8%}
-/* fix: apply per card */
-.dc.pe.show .ebf{width:42%!important}
-.dc.pr.show .ebf{width:50%!important}
-.dc.be.show .ebf{width:8%!important}
-
-/* ── SAMPLE SECTION ────────────────────────────── */
-.sample-section{background:var(--navy-mid)}
-.sample-box{background:rgba(255,255,255,.03);border:1px solid rgba(212,160,23,.22);border-radius:20px;padding:44px 36px;max-width:700px;margin:44px auto 0;text-align:center;transition:transform .3s,border-color .3s}
-.sample-box:hover{transform:translateY(-5px);border-color:rgba(212,160,23,.45)}
-.pdf-icon{font-size:3.5rem;display:block;margin-bottom:18px;animation:floatBook 3s ease-in-out infinite}
-
-/* ── COMPARISON ────────────────────────────────── */
-.ctable{width:100%;border-collapse:separate;border-spacing:0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.07);margin-top:44px}
-.ctable th{padding:17px 20px;font-size:.83rem;font-weight:700;letter-spacing:.2px}
-.ctable th:first-child{background:var(--navy-mid);text-align:left;color:rgba(255,255,255,.65);width:42%}
-.ctable th:nth-child(2){background:rgba(239,68,68,.08);color:#FCA5A5;text-align:center}
-.ctable th:nth-child(3){background:rgba(212,160,23,.1);color:var(--gold);text-align:center}
-.ctable td{padding:12px 20px;font-size:.83rem;border-top:1px solid rgba(255,255,255,.04);transition:background .2s}
-.ctable tr:hover td{background:rgba(255,255,255,.025)!important}
-.ctable td:first-child{color:rgba(255,255,255,.85);background:rgba(255,255,255,.015)}
-.ctable td:nth-child(2){text-align:center;background:rgba(239,68,68,.03);color:#FCA5A5}
-.ctable td:nth-child(3){text-align:center;background:rgba(212,160,23,.04);color:var(--gold-light)}
-
-/* ── TESTIMONIALS ──────────────────────────────── */
-.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-top:44px}
-.tcard{background:var(--navy-mid);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:24px;opacity:0;transition:transform .25s,border-color .25s}
-.tcard.show-l{animation:tSlideL .6s ease both}
-.tcard.show-c{animation:cardRise .6s ease .15s both}
-.tcard.show-r{animation:tSlideR .6s ease .3s both}
-.tcard:hover{transform:translateY(-4px);border-color:rgba(212,160,23,.2)}
-.stars{color:var(--gold);font-size:.9rem;margin-bottom:13px;letter-spacing:2px}
-.ttext{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.9);line-height:1.8;margin-bottom:18px;font-style:italic}
-.tauth{display:flex;align-items:center;gap:12px}
-.tav{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.78rem;color:var(--navy)}
-.tan{font-weight:700;font-size:.83rem;color:#fff}
-.tam{font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px}
-
-/* ── FAQ ───────────────────────────────────────── */
-.flist{max-width:720px;margin:44px auto 0;display:flex;flex-direction:column;gap:9px}
-.fi{background:var(--navy-mid);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden;transition:border-color .3s}
-.fi.open{border-color:rgba(212,160,23,.3)}
-.fq{width:100%;background:none;border:none;padding:17px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;font-family:var(--font);font-size:.88rem;font-weight:600;color:#fff;gap:12px;transition:background .2s}
-.fq:hover{background:rgba(255,255,255,.03)}
-.fchev{width:17px;height:17px;fill:var(--gold);transition:transform .3s;flex-shrink:0}
-.fi.open .fchev{transform:rotate(180deg)}
-.fa{max-height:0;overflow:hidden;transition:max-height .38s ease}
-.fi.open .fa{max-height:320px}
-.fai{padding:0 20px 17px;padding-top:13px;font-size:.84rem;font-weight:300;color:rgba(255,255,255,.8);line-height:1.8;border-top:1px solid rgba(255,255,255,.05);animation:faqOpen .3s ease both}
-
-/* ── CTA ───────────────────────────────────────── */
-.cta-sec{background:linear-gradient(135deg,var(--navy-mid),#0C1C35);border-top:1px solid rgba(212,160,23,.18);border-bottom:1px solid rgba(212,160,23,.18);text-align:center;padding:88px 24px}
-.cta-sec h2{font-size:clamp(1.9rem,4.5vw,3rem);font-weight:900;color:#fff;margin-bottom:16px;line-height:1.1;letter-spacing:-.6px}
-.cta-sec p{font-size:.96rem;font-weight:300;color:rgba(255,255,255,.72);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
-.cprow{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:28px;flex-wrap:wrap}
-.gstrip{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.79rem;color:rgba(255,255,255,.58);margin-top:18px;flex-wrap:wrap;gap:12px}
-
-/* ── FOOTER ────────────────────────────────────── */
-footer{background:#040A14;padding:34px 24px;text-align:center;border-top:1px solid rgba(255,255,255,.05)}
-.fbrand{font-size:1.4rem;font-weight:900;color:var(--gold);margin-bottom:6px;letter-spacing:1px}
-.ftagline{font-size:.68rem;letter-spacing:3px;color:rgba(255,255,255,.4);font-weight:600;text-transform:uppercase;margin-bottom:14px}
-footer p{font-size:.78rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.9}
-
-.divider{height:1px;background:rgba(255,255,255,.05)}
-
-/* ── REVEAL UTIL ───────────────────────────────── */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
-.reveal.vis{opacity:1;transform:none}
-
-/* ── RESPONSIVE ────────────────────────────────── */
-@media(max-width:768px){
-  .hdr{padding:11px 16px}
-  .hero{padding:130px 16px 64px}
-  .pnew{font-size:2.4rem}
-  .pbox{padding:16px 24px}
-  .hctas .btn,.hctas .btn-o{padding:13px 24px;font-size:.92rem}
-  .dgrid{grid-template-columns:1fr}
-  .info-grid{grid-template-columns:1fr}
-  .step-row{grid-template-columns:1fr 1fr}
-  .ctable{font-size:.78rem}
-  .ctable th,.ctable td{padding:10px 12px}
-  .about-intro{padding:24px 20px}
-  section{padding:56px 16px}
-  .sample-box{padding:28px 20px}
-  .cta-sec{padding:60px 16px}
-  .tgrid{grid-template-columns:1fr}
-  .particle{display:none}
-  .cdbar{font-size:.72rem;padding:10px 12px;line-height:1.5;word-break:break-word}
-  .cdu{font-size:.82rem;padding:2px 7px;min-width:28px}
+.site{
+  position:relative;z-index:10;
+  width:100%;height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:2rem;
 }
-@media(max-width:480px){
-  .hero h1{letter-spacing:-.3px}
-  .tbstrip .tb span{display:none}
-  .step-row{grid-template-columns:1fr}
-  .cprow{flex-direction:column;gap:10px}
-  .btn-wrap::before,.btn-wrap::after{display:none}
+
+/* LOGO */
+.logo-wrap{
+  display:flex;flex-direction:column;align-items:center;
+  animation:fadeUp 1.2s cubic-bezier(.16,1,.3,1) both;
+}
+.logo-text{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5.5rem,20vw,12rem);
+  letter-spacing:.08em;
+  line-height:.9;
+  display:flex;align-items:baseline;
+}
+.lu{color:var(--gold);text-shadow:0 0 80px rgba(201,168,76,.25)}
+.mu{color:#FFFFFF;text-shadow:0 0 80px rgba(255,255,255,.1)}
+
+/* ACRONYM */
+.acronym{
+  display:flex;align-items:center;
+  margin-top:.7rem;
+  animation:fadeUp 1.2s .2s cubic-bezier(.16,1,.3,1) both;
+}
+.ac-item{
+  display:flex;flex-direction:column;align-items:center;
+  padding:0 clamp(.7rem,2vw,1.5rem);
+}
+.ac-letter{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(.6rem,1.1vw,.72rem);
+  font-weight:700;letter-spacing:.25em;color:var(--gold);
+}
+.ac-word{
+  font-family:'Barlow',sans-serif;
+  font-size:clamp(.52rem,.95vw,.63rem);
+  font-weight:300;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);margin-top:.1rem;
+}
+.ac-pipe{
+  width:1px;height:1.8rem;
+  background:linear-gradient(to bottom,transparent,var(--gold-dim) 50%,transparent);
+}
+
+/* CYCLING MESSAGE */
+.msg-wrap{
+  margin-top:2rem;
+  text-align:center;
+  height:clamp(2rem,4.5vw,2.8rem);
+  overflow:hidden;position:relative;
+  animation:fadeUp 1.2s .38s cubic-bezier(.16,1,.3,1) both;
+}
+.msg{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(1.3rem,4vw,2.4rem);
+  letter-spacing:.16em;
+  background:linear-gradient(90deg,var(--gold-dim) 0%,var(--gold-light) 50%,var(--gold-dim) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+  position:absolute;width:100%;
+  opacity:0;transform:translateY(14px);
+  transition:opacity .5s ease,transform .5s ease;
+}
+.msg.active{opacity:1;transform:translateY(0)}
+.msg.exit{opacity:0;transform:translateY(-14px)}
+
+/* MISSION */
+.mission{
+  margin-top:.9rem;
+  font-family:'Barlow',sans-serif;
+  font-size:clamp(.55rem,1.2vw,.75rem);
+  font-weight:300;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);
+  animation:fadeUp 1.2s .52s cubic-bezier(.16,1,.3,1) both;
+}
+.mission b{color:var(--muted2);font-weight:400}
+
+/* DIVIDER */
+.divider{
+  width:clamp(50px,8vw,100px);height:1px;
+  background:linear-gradient(to right,transparent,var(--gold-dim),transparent);
+  margin:1.8rem 0 1.5rem;
+  animation:scaleX 1s .68s cubic-bezier(.16,1,.3,1) both;
+  transform-origin:center;
+}
+
+/* NAV */
+.nav{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:.3rem clamp(1rem,2.5vw,2.2rem);
+  animation:fadeUp 1.2s .82s cubic-bezier(.16,1,.3,1) both;
+}
+.nav a{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(.62rem,1.2vw,.78rem);
+  font-weight:500;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--muted);
+  text-decoration:none;position:relative;padding:.1rem 0;
+  transition:color .3s;
+}
+.nav a::after{
+  content:'';position:absolute;bottom:0;left:0;right:100%;
+  height:1px;background:var(--gold);
+  transition:right .4s cubic-bezier(.16,1,.3,1);
+}
+.nav a:hover{color:var(--gold-light)}
+.nav a:hover::after{right:0}
+
+/* RINGS */
+.rings{
+  position:absolute;
+  width:clamp(200px,38vw,460px);
+  height:clamp(200px,38vw,460px);
+  pointer-events:none;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+}
+.ring{
+  position:absolute;inset:0;border-radius:50%;
+  border:1px solid rgba(201,168,76,.06);
+  animation:pulse 5s ease-out infinite;
+}
+.ring:nth-child(2){animation-delay:1.66s}
+.ring:nth-child(3){animation-delay:3.33s}
+
+/* POWERED */
+.powered{
+  position:fixed;bottom:1.6rem;right:2rem;z-index:20;
+  display:flex;align-items:center;gap:.5rem;opacity:.32;
+  pointer-events:none;
+  animation:fadeUp 1.2s 1.1s cubic-bezier(.16,1,.3,1) both;
+}
+.pw-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.58rem;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);
+}
+.pw-brand{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:.9rem;letter-spacing:.08em;
+}
+.pw-brand .lu{color:var(--gold)}
+.pw-brand .mu{color:#fff}
+
+/* FOOT */
+.foot{
+  position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);
+  font-family:'Barlow',sans-serif;
+  font-size:clamp(.48rem,.85vw,.58rem);font-weight:300;
+  letter-spacing:.4em;text-transform:uppercase;
+  color:#262620;white-space:nowrap;
+  animation:fadeUp 1.2s 1s cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes scaleX{
+  from{opacity:0;transform:scaleX(0)}
+  to{opacity:1;transform:scaleX(1)}
+}
+@keyframes pulse{
+  0%{transform:scale(.5);opacity:.55}
+  100%{transform:scale(1.8);opacity:0}
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="hdr">
-  <div class="logo">
-    <span class="l1 lu">L</span><span class="l2 lu">U</span><span class="l3 mu">M</span><span class="l4 mu">U</span>
-    <div class="logo-tag">Learn · Upgrade · Make · Use</div>
-  </div>
-  <a href="https://www.instamojo.com/" target="_blank" class="btn">Get LUMU — ₹2,999</a>
-</header>
+<canvas id="c"></canvas>
 
-<!-- COUNTDOWN -->
-<div class="cdbar">
-  🔥 LUMU Launch Offer — Price returns to ₹4,999 in &nbsp;
-  <span class="cdu" id="cd-h">11</span>h &nbsp;
-  <span class="cdu" id="cd-m">59</span>m &nbsp;
-  <span class="cdu" id="cd-s">00</span>s
+<div class="site">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center">
+
+    <div class="rings">
+      <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+    </div>
+
+    <div class="logo-wrap">
+      <div class="logo-text"><span class="lu">LU</span><span class="mu">MU</span></div>
+      <div class="acronym">
+        <div class="ac-item"><span class="ac-letter">L</span><span class="ac-word">Light</span></div>
+        <div class="ac-pipe"></div>
+        <div class="ac-item"><span class="ac-letter">U</span><span class="ac-word">Utility</span></div>
+        <div class="ac-pipe"></div>
+        <div class="ac-item"><span class="ac-letter">M</span><span class="ac-word">Mankind</span></div>
+        <div class="ac-pipe"></div>
+        <div class="ac-item"><span class="ac-letter">U</span><span class="ac-word">Uplift</span></div>
+      </div>
+    </div>
+
+    <div class="msg-wrap" id="mw">
+      <div class="msg active">We Power. We Trigger.</div>
+      <div class="msg">We Evolve. We Solve.</div>
+      <div class="msg">We Engineer. We Elevate.</div>
+      <div class="msg">Every Release. A Better Life.</div>
+    </div>
+
+    <p class="mission">
+      Powering partners &nbsp;<b>·</b>&nbsp; Engineering life forward &nbsp;<b>·</b>&nbsp; Every update matters
+    </p>
+
+    <div class="divider"></div>
+
+    <nav class="nav">
+      <a href="/pmp">PMP</a>
+      <a href="/idcard">ID Card</a>
+      <a href="/cyclekit">Long John Cycle Kit</a>
+      <a href="/dosemate">DoseMate</a>
+      <a href="/contact">Contact</a>
+    </nav>
+
+  </div>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div id="ptcl"></div>
-  <div class="container">
-    <span class="hero-book">📚</span>
-    <div class="hbadge"> All concepts are explained in simple, intuitive slides so you can understand and remember easily. </div>
-    <h1>PMP Exam <br> Complete Study Material (Self-Study Pack)<br><span> Make it stick. Use it to pass.</span></h1>
-    <p class="hsub">The LUMU method - 35 visual topic PDFs that take you from first concept to exam-ready confidence. No coaching. No fluff. Just results.</p>
-    <div class="pbox">
-      <span class="pold">₹4,999</span>
-      <span class="pnew">₹2,999</span>
-      <span class="psave">Save 40%</span>
-    </div>
-    <div class="hctas">
-      <span class="btn-wrap"><a href="https://www.instamojo.com/" target="_blank" class="btn">Buy Now — Instant Access</a></span>
-      <a href="#sample" class="btn-o">Try Free Sample ↓</a>
-    </div>
-    <div class="tbstrip">
-      <div class="tb"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke="#D4A017" stroke-width="1.8"/></svg><span>35 Topic PDFs</span></div>
-      <div class="tb"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 10h16M4 14h8" stroke="#D4A017" stroke-width="1.8" stroke-linecap="round"/></svg><span>175+ Slides</span></div>
-      <div class="tb"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#D4A017" stroke-width="1.8"/><path d="M12 3a9 9 0 010 18M12 3C9.5 7 8 9.5 8 12s1.5 5 4 9" stroke="#D4A017" stroke-width="1.8"/></svg><span>2026 ECO Aligned</span></div>
-      <div class="tb"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke="#D4A017" stroke-width="1.8" stroke-linecap="round"/></svg><span>Instant Download</span></div>
-      <div class="tb"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#D4A017" stroke-width="1.8" stroke-linecap="round"/></svg><span>Lifetime Access</span></div>
-    </div>
-    <div class="global">🌍 &nbsp;Trusted by PMP aspirants across India, UAE, USA, UK, Canada &amp; beyond</div>
-    <span class="scroll-bob">↓</span>
-  </div>
-</section>
+<p class="foot">Innovation &nbsp;·&nbsp; Purpose &nbsp;·&nbsp; Impact &nbsp;·&nbsp; Progress</p>
 
-<div class="divider"></div>
-
-<!-- STATS -->
-<section style="padding:52px 24px;background:var(--navy-mid)">
-  <div class="container">
-    <p style="text-align:center;font-size:.78rem;font-weight:700;letter-spacing:2.5px;color:var(--teal-light);text-transform:uppercase;margin-bottom:24px">Learn · Upgrade · Make · Use</p>
-    <div class="sgrid" id="statgrid">
-      <div class="sc"><span class="n">35</span><span class="l">Topic PDFs</span></div>
-      <div class="sc"><span class="n">175+</span><span class="l">Concept Slides</span></div>
-      <div class="sc"><span class="n">3</span><span class="l">PMP Domains</span></div>
-      <div class="sc"><span class="n">175+</span><span class="l">Practice Questions</span></div>
-      <div class="sc"><span class="n">∞</span><span class="l">Lifetime Access</span></div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ABOUT -->
-<section style="background:var(--navy)">
-  <div class="container">
-    <div style="max-width:860px;margin:0 auto">
-
-      <div class="about-intro reveal">
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.25);border-radius:50px;padding:5px 16px;margin-bottom:18px">
-          <span style="font-size:.62rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold)">LUMU · PMP Prep Product</span>
-        </div>
-        <h2 style="font-size:clamp(1.4rem,3vw,1.9rem);font-weight:900;color:#fff;margin-bottom:11px;letter-spacing:-.3px">PMP Exam Complete Study Material — <span style="color:var(--gold)">Self-Study Pack</span></h2>
-        <p style="font-size:.98rem;color:var(--teal-light);font-weight:600;margin-bottom:14px">Pass PMP with Clear, Structured Study Slides</p>
-        <p style="font-size:.93rem;color:rgba(255,255,255,.78);font-weight:300;line-height:1.85;max-width:660px">Designed for working professionals who want to clear the PMP exam quickly - without attending long training sessions. All concepts are explained in simple, intuitive slides so you can understand and remember easily.</p>
-        <div style="margin-top:20px;padding:15px 18px;background:rgba(77,217,212,.06);border-left:3px solid var(--teal);border-radius:0 8px 8px 0">
-          <p style="font-size:.87rem;color:rgba(255,255,255,.88);line-height:1.8;font-style:italic">If you carefully study this material, practice the concepts, and revise the slides - you will be well prepared to pass the PMP exam. ✅</p>
-        </div>
-      </div>
-
-      <div class="info-grid">
-
-        <!-- WHAT YOU GET -->
-        <div class="info-card reveal">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
-            <div class="info-icon" style="background:rgba(212,160,23,.12)">📦</div>
-            <span style="font-size:.98rem;font-weight:800;color:#fff">What You Will Get</span>
-          </div>
-          <div class="chk" id="chklist">
-            <div class="chk-item"><span style="color:var(--green);flex-shrink:0;font-size:.9rem">✔</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">Complete PMP exam study material in PDF format</span></div>
-            <div class="chk-item"><span style="color:var(--green);flex-shrink:0;font-size:.9rem">✔</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">Topic-wise structured slides <strong style="color:#fff">(15–20 per concept)</strong></span></div>
-            <div class="chk-item"><span style="color:var(--green);flex-shrink:0;font-size:.9rem">✔</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">Easy explanation of PMBOK concepts</span></div>
-            <div class="chk-item"><span style="color:var(--green);flex-shrink:0;font-size:.9rem">✔</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">Predictive + Agile + Hybrid models explained</span></div>
-            <div class="chk-item"><span style="color:var(--green);flex-shrink:0;font-size:.9rem">✔</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">Important exam terms, definitions &amp; frameworks</span></div>
-            <div class="chk-item"><span style="color:var(--green);flex-shrink:0;font-size:.9rem">✔</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">Visual diagrams and simplified explanations</span></div>
-            <div class="chk-item"><span style="color:var(--green);flex-shrink:0;font-size:.9rem">✔</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">Quick revision-friendly format</span></div>
-          </div>
-        </div>
-
-        <!-- WHO THIS IS FOR -->
-        <div class="info-card reveal">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
-            <div class="info-icon" style="background:rgba(77,217,212,.1)">🎯</div>
-            <span style="font-size:.98rem;font-weight:800;color:#fff">Who This Is For</span>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:10px">
-            <div class="for-card"><span style="font-size:1rem;flex-shrink:0">👷</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">Professionals preparing for <strong style="color:#fff">PMP Certification</strong></span></div>
-            <div class="for-card"><span style="font-size:1rem;flex-shrink:0">⚙️</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6"><strong style="color:#fff">Engineers and Project Managers</strong> across industries</span></div>
-            <div class="for-card"><span style="font-size:1rem;flex-shrink:0">📱</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">People who prefer <strong style="color:#fff">self-study</strong> over long courses</span></div>
-            <div class="for-card"><span style="font-size:1rem;flex-shrink:0">⏱️</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">Anyone who wants <strong style="color:#fff">clear PMP concepts quickly</strong></span></div>
-          </div>
-        </div>
-
-        <!-- WHY DIFFERENT -->
-        <div class="info-card reveal">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
-            <div class="info-icon" style="background:rgba(167,139,250,.1)">⚡</div>
-            <span style="font-size:.98rem;font-weight:800;color:#fff">Why LUMU Is Different</span>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:18px">
-            <div style="display:flex;gap:10px"><span style="color:var(--gold);font-size:.9rem;flex-shrink:0">✔</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">Concepts in very <strong style="color:#fff">intuitive visual slides</strong></span></div>
-            <div style="display:flex;gap:10px"><span style="color:var(--gold);font-size:.9rem;flex-shrink:0">✔</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">Based on <strong style="color:#fff">real project management</strong> experience</span></div>
-            <div style="display:flex;gap:10px"><span style="color:var(--gold);font-size:.9rem;flex-shrink:0">✔</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">Connects PMP concepts with <strong style="color:#fff">real projects</strong></span></div>
-            <div style="display:flex;gap:10px"><span style="color:var(--gold);font-size:.9rem;flex-shrink:0">✔</span><span style="font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.6">Saves <strong style="color:#fff">100+ hours</strong> of random internet searching</span></div>
-          </div>
-          <div style="padding:14px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:10px">
-            <div style="font-size:.68rem;font-weight:800;color:var(--green);letter-spacing:1.5px;margin-bottom:5px">⚡ INSTANT DOWNLOAD</div>
-            <p style="font-size:.79rem;color:rgba(255,255,255,.75);line-height:1.65">After purchase, instant access. Study on <strong style="color:#fff">mobile, tablet, or laptop</strong> — anytime.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- STUDY STEPS -->
-      <div class="study-card reveal" id="studycard">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-          <div class="info-icon" style="background:rgba(14,165,160,.15)">📋</div>
-          <span style="font-size:.98rem;font-weight:800;color:#fff">Study Recommendation — For Best Results</span>
-        </div>
-        <div class="step-row">
-          <div class="step-item">
-            <div class="step-num" style="background:var(--teal)">1</div>
-            <div><div style="font-size:.84rem;font-weight:700;color:#fff;margin-bottom:3px">Read</div><div style="font-size:.77rem;color:rgba(255,255,255,.68);line-height:1.5">Go through all slides topic by topic</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num" style="background:var(--gold)">2</div>
-            <div><div style="font-size:.84rem;font-weight:700;color:#fff;margin-bottom:3px">Understand</div><div style="font-size:.77rem;color:rgba(255,255,255,.68);line-height:1.5">Follow the concept flow in each PDF</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num" style="background:#A78BFA">3</div>
-            <div><div style="font-size:.84rem;font-weight:700;color:#fff;margin-bottom:3px">Revise</div><div style="font-size:.77rem;color:rgba(255,255,255,.68);line-height:1.5">Revisit slides 2–3 times before exam</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num" style="background:var(--green)">4</div>
-            <div><div style="font-size:.84rem;font-weight:700;color:#fff;margin-bottom:3px">Practice</div><div style="font-size:.77rem;color:rgba(255,255,255,.68);line-height:1.5">Attempt mock exams with confidence</div></div>
-          </div>
-        </div>
-        <div style="margin-top:18px;padding:12px 16px;background:rgba(255,255,255,.04);border-radius:8px;text-align:center">
-          <p style="font-size:.83rem;color:var(--teal-light);font-weight:600">Following this approach will give you <strong style="color:#fff">strong confidence</strong> for the PMP exam. 🎯</p>
-        </div>
-      </div>
-
-      <div class="reveal" style="margin-top:16px;padding:14px 20px;background:rgba(255,255,255,.02);border-radius:10px;border:1px solid rgba(255,255,255,.06);display:flex;gap:11px;align-items:flex-start">
-        <span style="font-size:.95rem;flex-shrink:0;margin-top:1px">ℹ️</span>
-        <p style="font-size:.78rem;color:rgba(255,255,255,.42);line-height:1.7"><strong style="color:rgba(255,255,255,.6)">Important Note:</strong> This material is for educational purposes. LUMU is an independent learning brand — not affiliated with PMI®. PMP® is a registered trademark of Project Management Institute, Inc.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- DOMAINS -->
-<section id="domains">
-  <div class="container">
-    <div style="text-align:center;max-width:580px;margin:0 auto" class="reveal">
-      <div class="slabel">The LUMU Bundle</div>
-      <h2 class="stitle">Complete Coverage of All <span>3 PMP Domains</span></h2>
-      <p class="ssub">Every performance domain from the 2026 PMP ECO - covered with visual slides built for deep understanding.</p>
-    </div>
-    <div class="dgrid" id="dgrid">
-      <div class="dc pe">
-        <div class="dh"><div class="di">👥</div><div><div class="dt">People Domain</div><div class="dm">Leadership · Conflict · Team Building</div></div></div>
-        <div class="dstats"><div class="dst"><span class="dsn">14</span><span class="dsl">Topics</span></div><div class="dst"><span class="dsn">210+</span><span class="dsl">Slides</span></div><div class="dst"><span class="dsn">70</span><span class="dsl">Practice Qs</span></div></div>
-        <div class="chips"><span class="chip">Manage Conflict</span><span class="chip">Lead a Team</span><span class="chip">Emotional Intelligence</span><span class="chip">Virtual Teams</span><span class="chip">Stakeholder Collaboration</span><span class="chip">+ 9 more</span></div>
-        <div class="ebar"><div class="ebl"><span>PMP Exam Weightage</span><span>42%</span></div><div class="ebt"><div class="ebf pe-bar"></div></div></div>
-      </div>
-      <div class="dc pr">
-        <div class="dh"><div class="di">⚙️</div><div><div class="dt">Process Domain</div><div class="dm">Planning · Risk · Schedule · Scope</div></div></div>
-        <div class="dstats"><div class="dst"><span class="dsn">17</span><span class="dsl">Topics</span></div><div class="dst"><span class="dsn">255+</span><span class="dsl">Slides</span></div><div class="dst"><span class="dsn">85</span><span class="dsl">Practice Qs</span></div></div>
-        <div class="chips"><span class="chip">Risk Management</span><span class="chip">Budget &amp; Resources</span><span class="chip">Agile / Hybrid</span><span class="chip">Procurement</span><span class="chip">Governance</span><span class="chip">+ 12 more</span></div>
-        <div class="ebar"><div class="ebl"><span>PMP Exam Weightage</span><span>50%</span></div><div class="ebt"><div class="ebf pr-bar"></div></div></div>
-      </div>
-      <div class="dc be">
-        <div class="dh"><div class="di">🏢</div><div><div class="dt">Business Environment</div><div class="dm">Compliance · Value · Change</div></div></div>
-        <div class="dstats"><div class="dst"><span class="dsn">4</span><span class="dsl">Topics</span></div><div class="dst"><span class="dsn">60+</span><span class="dsl">Slides</span></div><div class="dst"><span class="dsn">20</span><span class="dsl">Practice Qs</span></div></div>
-        <div class="chips"><span class="chip">Project Compliance</span><span class="chip">Deliver Business Value</span><span class="chip">Org Change</span><span class="chip">External Impact on Scope</span></div>
-        <div style="padding:12px 14px;background:rgba(167,139,250,.07);border-radius:10px;border:1px solid rgba(167,139,250,.15)"><div style="font-size:.7rem;color:#C4B5FD;font-weight:700;margin-bottom:4px;letter-spacing:.5px">DON'T UNDERESTIMATE THIS</div><p style="font-size:.77rem;color:rgba(255,255,255,.7);line-height:1.6">Grew in the 2026 ECO update — most candidates fail here.</p></div>
-        <div class="ebar"><div class="ebl"><span>PMP Exam Weightage</span><span>8%</span></div><div class="ebt"><div class="ebf be-bar"></div></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- SAMPLE -->
-<section id="sample" class="sample-section">
-  <div class="container">
-    <div style="text-align:center;max-width:600px;margin:0 auto" class="reveal">
-      <div class="slabel">LUMU in Action — Real Sample</div>
-      <h2 class="stitle">Try It <span>Before You Buy</span></h2>
-      <p class="ssub">Download a real PDF from the bundle. Same design, same depth, same exam-day tips - completely free.</p>
-    </div>
-    <div class="sample-box reveal">
-      <span class="pdf-icon">📄</span>
-      <h3 style="font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:10px">Try LUMU Free- Download a SamplePDF "</h3>
-      <p style="font-size:.9rem;color:rgba(255,255,255,.72);font-weight:300;line-height:1.8;max-width:460px;margin:0 auto 26px"> This covers one topic "Models" (i.e : The exam will test your ability to select the right tool for the job.) </br> This is the real <strong style="color:#fff">"Core Models"</strong> topic PDF — one of 35 in the full bundle. 15 slides + 5 exam questions. No signup needed.</p>
-      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:22px">
-        <a href="PMP_Sample_CoreModels.pdf" download="PMP_Sample_CoreModels.pdf" class="btn" style="font-size:.96rem;padding:13px 30px;display:inline-flex;align-items:center;gap:9px">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          Download Free Sample
-        </a>
-        <a href="https://www.instamojo.com/" target="_blank" class="btn-o" style="font-size:.96rem;padding:13px 30px">Get Full Bundle — ₹2,999</a>
-      </div>
-      <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap">
-        <div style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.6)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"/></svg>15 slides · Real PDF</div>
-        <div style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.6)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"/></svg>5 exam questions</div>
-        <div style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.6)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"/></svg>No signup required</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- COMPARISON -->
-<section>
-  <div class="container">
-    <div style="text-align:center;max-width:600px;margin:0 auto" class="reveal">
-      <div class="slabel">Why Choose LUMU</div>
-      <h2 class="stitle">LUMU vs. <span>Traditional Coaching</span></h2>
-      <p class="ssub">You don't need to spend ₹20,000–₹50,000 on coaching classes to pass the PMP.</p>
-    </div>
-    <div class="reveal">
-      <table class="ctable">
-        <thead><tr><th>Feature</th><th>Traditional Coaching</th><th>LUMU Bundle</th></tr></thead>
-        <tbody>
-          <tr><td>Cost</td><td>₹20,000 – ₹50,000</td><td>₹2,999 only</td></tr>
-          <tr><td>Schedule Flexibility</td><td>Fixed class timings</td><td>Study anytime, anywhere</td></tr>
-          <tr><td>Self-paced Learning</td><td>❌</td><td>✅</td></tr>
-          <tr><td>Visual Concept Slides</td><td>❌</td><td>✅</td></tr>
-          <tr><td>Instant Access</td><td>❌</td><td>✅</td></tr>
-          <tr><td>Agile + Predictive + Hybrid</td><td>Varies</td><td>✅ All 3 approaches</td></tr>
-          <tr><td>Exam-style Questions per Topic</td><td>Sometimes</td><td>✅ Every single topic</td></tr>
-          <tr><td>Available Globally</td><td>❌ Mostly local</td><td>✅ Worldwide download</td></tr>
-          <tr><td>Lifetime Access</td><td>❌</td><td>✅</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- TESTIMONIALS -->
-<section style="background:var(--navy-mid)">
-  <div class="container">
-    <div style="text-align:center;max-width:520px;margin:0 auto" class="reveal">
-      <div class="slabel">Student Results</div>
-      <h2 class="stitle">What PMP Aspirants <span>Are Saying</span></h2>
-    </div>
-    <div class="tgrid" id="tgrid">
-      <div class="tcard">
-        <div class="stars">★★★★★</div>
-        <p class="ttext">"I was struggling with Process domain concepts — after going through these slides I finally understood how everything connects. The Cynefin and Tuckman slides alone saved me. Passed first attempt!"</p>
-        <div class="tauth"><div class="tav" style="background:#D4A017">RK</div><div><div class="tan">Rahul K.</div><div class="tam">Senior PM · Bangalore, India · PMP Certified ✓</div></div></div>
-      </div>
-      <div class="tcard">
-        <div class="stars">★★★★★</div>
-        <p class="ttext">"The Diagnostic Cheat Sheet in the Models PDF alone is worth the price. 5 practice questions per topic trained me to think the PMI way. Clear, concise, covers exactly what the exam tests."</p>
-        <div class="tauth"><div class="tav" style="background:#4DD9D4">SA</div><div><div class="tan">Sarah A.</div><div class="tam">IT Project Manager · Dubai, UAE · PMP Certified ✓</div></div></div>
-      </div>
-      <div class="tcard">
-        <div class="stars">★★★★★</div>
-        <p class="ttext">"Working professional, no time for evening classes. These PDFs let me study 30 minutes on my commute. Visual style made revision so fast. Cleared PMP without coaching. Worth every rupee."</p>
-        <div class="tauth"><div class="tav" style="background:#A78BFA">MP</div><div><div class="tan">Meera P.</div><div class="tam">Operations Manager · Chennai, India · PMP Certified ✓</div></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- FAQ -->
-<section>
-  <div class="container">
-    <div style="text-align:center" class="reveal">
-      <div class="slabel">Got Questions?</div>
-      <h2 class="stitle">Frequently Asked <span>Questions</span></h2>
-    </div>
-    <div class="flist reveal">
-      <div class="fi"><button class="fq" onclick="toggleFaq(this)">Do I need any prior PMP knowledge to use these slides?<svg class="fchev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button><div class="fa"><div class="fai">No. Each PDF is self-intuitive. Even starting from scratch, every topic builds understanding step by step with visuals. No PMBOK or external resource needed.</div></div></div>
-      <div class="fi"><button class="fq" onclick="toggleFaq(this)">Is this aligned with the 2026 PMP Exam Content Outline?<svg class="fchev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button><div class="fa"><div class="fai">Yes. All 35 topics are mapped to PMI's 2026 ECO — covering People (42%), Process (50%), and Business Environment (8%). Agile, predictive, and hybrid approaches are woven throughout.</div></div></div>
-      <div class="fi"><button class="fq" onclick="toggleFaq(this)">How do I receive the PDFs after purchase?<svg class="fchev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button><div class="fa"><div class="fai">Immediately after payment via Instamojo, you receive a download link by email. All 35 PDFs available instantly on any device — laptop, tablet, or phone.</div></div></div>
-      <div class="fi"><button class="fq" onclick="toggleFaq(this)">Can international students purchase this?<svg class="fchev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button><div class="fa"><div class="fai">Absolutely. The bundle is available worldwide — USA, UK, UAE, Canada, Australia, Singapore and beyond. Pricing is in INR; international cards are accepted via Instamojo.</div></div></div>
-      <div class="fi"><button class="fq" onclick="toggleFaq(this)">Is this enough to pass the PMP exam on its own?<svg class="fchev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button><div class="fa"><div class="fai">This bundle covers all concepts tested in the PMP exam visually and deeply. Combined with a practice test bank, most students find it sufficient. The 175 included exam-style questions are a strong starting point.</div></div></div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- FINAL CTA -->
-<section class="cta-sec">
-  <div class="container">
-    <div class="reveal">
-      <div class="slabel" style="color:var(--teal-light)">Ready to Get Certified?</div>
-      <h2>Start Your LUMU Journey<br>for Just <span style="color:var(--gold)">₹2,999</span></h2>
-      <p>Learn the concepts. Upgrade your thinking. Make them stick. Use them. That's LUMU.</p>
-      <div class="cprow">
-        <span style="font-size:1.1rem;text-decoration:line-through;color:rgba(255,255,255,.35)">₹4,999</span>
-        <span style="font-size:2.8rem;font-weight:900;color:var(--gold);letter-spacing:-1px">₹2,999</span>
-        <div style="display:flex;flex-direction:column;gap:4px"><span class="psave">SAVE 40%</span><span style="font-size:.7rem;color:rgba(255,255,255,.5)">Limited time</span></div>
-      </div>
-      <span class="btn-wrap"><a href="https://www.instamojo.com/" target="_blank" class="btn" style="font-size:1.05rem;padding:15px 46px;border-radius:9px">Get LUMU Bundle — Instant Download</a></span>
-      <div class="gstrip">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round"/></svg>
-        Secure payment via Instamojo &nbsp;·&nbsp; Instant delivery to your email &nbsp;·&nbsp; Lifetime access
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="fbrand">LUMU</div>
-  <div class="ftagline">Learn · Upgrade · Make · Use</div>
-  <p>Crafted by a certified PMP® professional — Coimbatore, Tamil Nadu, India.</p>
-  <p>Serving PMP aspirants worldwide — India · UAE · USA · UK · Canada · Australia · Singapore</p>
-  <p style="margin-top:10px">© 2026 LUMU. All rights reserved. Not affiliated with PMI®. PMP® is a registered trademark of Project Management Institute, Inc.</p>
-</footer>
+<div class="powered">
+  <span class="pw-label">Powered by</span>
+  <span class="pw-brand"><span class="lu">LU</span><span class="mu">MU</span></span>
+</div>
 
 <script>
-/* ── PARTICLES ─────────────────────────────────── */
-(function(){
-  const c=document.getElementById('ptcl');
-  if(!c)return;
-  const cols=['rgba(212,160,23,.55)','rgba(77,217,212,.45)','rgba(167,139,250,.4)','rgba(255,255,255,.18)'];
-  for(let i=0;i<30;i++){
-    const p=document.createElement('div');
-    p.className='particle';
-    const s=Math.random()*5+3;
-    p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:-10px;background:${cols[Math.floor(Math.random()*cols.length)]};animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*12}s`;
-    c.appendChild(p);
+/* Particle network */
+const cv=document.getElementById('c'),ct=cv.getContext('2d');
+let W,H,pts=[],mouse={x:-9999,y:-9999};
+const N=95,CONN=138,MR=155;
+function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+for(let i=0;i<N;i++)pts.push({
+  x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,
+  vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,
+  r:Math.random()*1.3+.4,base:Math.random()*.32+.07
+});
+(function frame(){
+  ct.clearRect(0,0,W,H);
+  for(const p of pts){
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>W)p.vx*=-1;
+    if(p.y<0||p.y>H)p.vy*=-1;
+    const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<MR&&d>0){const f=(MR-d)/MR*.38;p.x+=dx/d*f*1.8;p.y+=dy/d*f*1.8}
   }
+  for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){
+    const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<CONN){
+      ct.beginPath();ct.moveTo(pts[i].x,pts[i].y);ct.lineTo(pts[j].x,pts[j].y);
+      ct.strokeStyle=`rgba(201,168,76,${(1-d/CONN)*.28})`;ct.lineWidth=.5;ct.stroke();
+    }
+  }
+  for(const p of pts){
+    const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
+    const g=d<MR?p.base+(1-d/MR)*.42:p.base;
+    ct.beginPath();ct.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ct.fillStyle=`rgba(201,168,76,${g})`;ct.fill();
+  }
+  requestAnimationFrame(frame);
 })();
 
-/* ── COUNTDOWN ─────────────────────────────────── */
-(function(){
-  const KEY='lumu_cd_v1';
-  let saved=localStorage.getItem(KEY),target;
-  if(saved){target=new Date(saved)}else{target=new Date(Date.now()+12*3600000);localStorage.setItem(KEY,target.toISOString())}
-  function fmt(el,val){
-    const v=String(val).padStart(2,'0');
-    if(el.textContent!==v){el.classList.remove('flip');void el.offsetWidth;el.classList.add('flip');el.textContent=v}
-  }
-  setInterval(()=>{
-    const d=Math.max(0,target-Date.now());
-    fmt(document.getElementById('cd-h'),Math.floor(d/3600000));
-    fmt(document.getElementById('cd-m'),Math.floor(d%3600000/60000));
-    fmt(document.getElementById('cd-s'),Math.floor(d%60000/1000));
-  },1000);
-})();
-
-/* ── INTERSECTION OBSERVERS ────────────────────── */
-// Generic reveal
-const revObs=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{if(e.isIntersecting){e.target.style.transitionDelay=(i*.07)+'s';e.target.classList.add('vis');revObs.unobserve(e.target)}});
-},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
-
-// Section title underline
-const titleObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('lit');titleObs.unobserve(e.target)}});
-},{threshold:.5});
-document.querySelectorAll('.stitle').forEach(el=>titleObs.observe(el));
-
-// Stat counter bounce
-const statObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      document.querySelectorAll('.sc').forEach((sc,i)=>{
-        setTimeout(()=>sc.classList.add('go'),i*120);
-      });
-      statObs.disconnect();
-    }
-  });
-},{threshold:.3});
-const sg=document.getElementById('statgrid');
-if(sg)statObs.observe(sg);
-
-// Domain cards stagger + progress bars
-const dcObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const cards=document.querySelectorAll('.dc');
-      cards.forEach((c,i)=>{
-        setTimeout(()=>{
-          c.classList.add('show');
-          // fill progress bars after card shows
-          setTimeout(()=>{
-            if(c.classList.contains('pe'))c.querySelector('.ebf').style.width='42%';
-            if(c.classList.contains('pr'))c.querySelector('.ebf').style.width='50%';
-            if(c.classList.contains('be'))c.querySelector('.ebf').style.width='8%';
-          },400);
-        },i*180);
-      });
-      dcObs.disconnect();
-    }
-  });
-},{threshold:.1});
-const dg=document.getElementById('dgrid');
-if(dg)dcObs.observe(dg);
-
-// Checklist items animate in
-const clObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.querySelectorAll('.chk-item').forEach((item,i)=>{
-        setTimeout(()=>item.classList.add('show'),i*90);
-      });
-      clObs.unobserve(e.target);
-    }
-  });
-},{threshold:.2});
-const cl=document.getElementById('chklist');
-if(cl)clObs.observe(cl);
-
-// Step numbers pop
-const stepObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.querySelectorAll('.step-num').forEach((n,i)=>{
-        setTimeout(()=>n.classList.add('pop'),i*150+100);
-      });
-      stepObs.unobserve(e.target);
-    }
-  });
-},{threshold:.3});
-const sc2=document.getElementById('studycard');
-if(sc2)stepObs.observe(sc2);
-
-// Testimonials slide in
-const tObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const cards=document.querySelectorAll('.tcard');
-      if(cards.length>=1)setTimeout(()=>cards[0].classList.add('show-l'),0);
-      if(cards.length>=2)setTimeout(()=>cards[1].classList.add('show-c'),150);
-      if(cards.length>=3)setTimeout(()=>cards[2].classList.add('show-r'),300);
-      tObs.disconnect();
-    }
-  });
-},{threshold:.15});
-const tg=document.getElementById('tgrid');
-if(tg)tObs.observe(tg);
-
-/* ── FAQ ───────────────────────────────────────── */
-function toggleFaq(btn){
-  const item=btn.closest('.fi'),isOpen=item.classList.contains('open');
-  document.querySelectorAll('.fi.open').forEach(el=>el.classList.remove('open'));
-  if(!isOpen)item.classList.add('open');
-}
+/* Message cycler */
+const msgs=[...document.querySelectorAll('.msg')];
+const mw=document.getElementById('mw');
+let maxH=0;
+msgs.forEach(m=>{
+  m.style.position='relative';
+  maxH=Math.max(maxH,m.offsetHeight);
+  m.style.position='absolute';
+});
+mw.style.height=maxH+'px';
+let cur=0;
+setInterval(()=>{
+  msgs[cur].classList.remove('active');
+  msgs[cur].classList.add('exit');
+  const prev=cur;
+  setTimeout(()=>msgs[prev].classList.remove('exit'),600);
+  cur=(cur+1)%msgs.length;
+  msgs[cur].classList.add('active');
+},2800);
 </script>
 </body>
 </html>
